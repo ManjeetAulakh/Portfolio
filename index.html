@@ -111,48 +111,6 @@
 
 /* css from chatgpt for image circle*/
 	
-/* Make the profile image circular with hover animation */
-.about-profile-img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 6px solid #ffc107; /* golden border */
-  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5); /* golden glow */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.about-profile-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-}
-
-/* Prevent text from overlapping image */
-.about-section .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-@media (max-width: 768px) {
-  .about-section .row {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-profile-img {
-    margin: 0 auto;
-  }
-}
-
-
-.about-profile-img {
-  opacity: 0;
-  transform: scale(0.8);
-  animation: fadeZoom 0.8s ease forwards;
-  animation-delay: 0.2s;
-}
 
 
 
