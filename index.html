@@ -109,6 +109,23 @@
   transform: scale(1.1);
 }
 
+/* css from chatgpt for image circle*/
+	
+.profile-img {
+  width: 250px; /* Adjust as needed */
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #ffc107; /* golden border */
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5); /* golden shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(255, 193, 7, 0.7);
+}
+
 
 </style>
 
@@ -213,7 +230,9 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-5">
 									  <div class="about-img">
-										<img src="images/bg4.JPG" class="img-fluid rounded b-shadow-a" alt="">
+<!-- 										<img src="images/bg4.JPG" class="img-fluid rounded b-shadow-a" alt=""> -->
+										<img src="images/bg4.JPG" class="profile-img" alt="Profile Picture">
+
 									  </div>
 									</div>
 									<!-- Details next to profile image -->
