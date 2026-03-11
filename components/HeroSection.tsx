@@ -1,163 +1,236 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { RiArrowRightLine, RiGithubLine } from "react-icons/ri";
-import { HiCode, HiOutlineChip, HiBriefcase } from "react-icons/hi";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
-const techBadges = [
-    { label: "Java", color: "from-orange-500/20 to-orange-600/10 border-orange-500/30 text-orange-400", style: { top: "5%", right: "10%" } },
-    { label: "Spring Boot", color: "from-green-500/20 to-green-600/10 border-green-500/30 text-green-400", style: { top: "30%", right: "-5%" } },
-    { label: "React", color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400", style: { bottom: "20%", right: "0%" } },
-    { label: "PostgreSQL", color: "from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400", style: { bottom: "5%", right: "25%" } },
-    { label: "Docker", color: "from-violet-500/20 to-violet-600/10 border-violet-500/30 text-violet-400", style: { top: "15%", left: "0%" } },
+const ROLES = [
+    "Full-Stack Developer",
+    "Creative Technologist",
+    "Systems Architect",
+    "Content Creator",
 ];
 
-const floatDelays = ["animate-float", "animate-float-delay-1", "animate-float-delay-2", "animate-float-delay-3", "animate-float-delay-4"];
+function RoleCycler() {
+    const [index, setIndex] = useState(0);
 
-const stats = [
-    { icon: <HiBriefcase />, value: "3+", label: "Years of Experience" },
-    { icon: <HiCode />, value: "10+", label: "Projects Built" },
-    { icon: <HiOutlineChip />, value: "15+", label: "Technologies" },
-];
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prev) => (prev + 1) % ROLES.length);
+        }, 2500);
+        return () => clearInterval(interval);
+    }, []);
 
-const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
-};
+    return (
+        <div className="h-8 overflow-hidden relative flex items-center mt-6">
+            <motion.div
+                key={index}
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -30, opacity: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute text-emerald-400 font-mono text-xl md:text-2xl font-medium tracking-tight"
+            >
+                {ROLES[index]}
+                <span className="animate-blink ml-1">_</span>
+            </motion.div>
+        </div>
+    );
+}
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
+function StatCounter({ value, label, delay }: { value: number; label: string; delay: number }) {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true });
+    const spring = useSpring(0, { bounce: 0, duration: 2000 });
+    const [display, setDisplay] = useState(0);
+
+    useEffect(() => {
+        if (inView) {
+            setTimeout(() => spring.set(value), delay * 1000);
+        }
+    }, [inView, spring, value, delay]);
+
+    useEffect(() => {
+        return spring.on("change", (latest) => {
+            setDisplay(Math.floor(latest));
+        });
+    }, [spring]);
+
+    return (
+        <div ref={ref} className="flex flex-col gap-1">
+            <div className="text-4xl md:text-5xl font-geist font-bold text-zinc-100 flex items-baseline">
+                {display}
+                <span className="text-emerald-400 text-2xl ml-0.5">+</span>
+            </div>
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{label}</div>
+        </div>
+    );
+}
+
+function TerminalCard() {
+    const [text, setText] = useState("");
+    const fullText = `> Init engineer...
+> Loading modules...
+> [ok] React, Next.js, Spring Boot
+> [ok] System Architecture
+> Status: Ready to build.`;
+
+    const ref = useRef<HTMLDivElement>(null);
+    const inView = useInView(ref, { once: true });
+
+    useEffect(() => {
+        if (!inView) return;
+        let i = 0;
+        const timer = setInterval(() => {
+            setText(fullText.slice(0, i));
+            i++;
+            if (i > fullText.length) clearInterval(timer);
+        }, 40);
+        return () => clearInterval(timer);
+    }, [inView, fullText]);
+
+    // Simple tilt on mouse move
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        ref.current.style.transform = `perspective(1000px) rotateY(${x / 20}deg) rotateX(${-y / 20}deg)`;
+    };
+
+    const handleMouseLeave = () => {
+        if (!ref.current) return;
+        ref.current.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+    };
+
+    return (
+        <div
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="w-full max-w-[480px] rounded-xl overflow-hidden glass shadow-2xl shadow-black/60 transition-transform duration-200 ease-out will-change-transform border border-white/5"
+        >
+            <div className="h-10 bg-zinc-900/80 border-b border-white/5 flex items-center px-4 gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                <div className="ml-auto text-xs font-mono text-zinc-500">manjeet ~ bash</div>
+            </div>
+            <div className="p-6 h-[240px] bg-zinc-950/80 text-sm font-mono text-zinc-300 whitespace-pre-wrap leading-relaxed">
+                {text}
+                <span className="animate-blink text-emerald-400">_</span>
+            </div>
+        </div>
+    );
+}
 
 export default function HeroSection() {
+    const line1 = "Precise software".split(" ");
+    const line2 = "engineered to scale.".split(" ");
+
     return (
-        <section
-            id="hero"
-            className="relative min-h-screen flex items-center pt-16 overflow-hidden"
-        >
-            {/* Background blobs */}
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-3xl pointer-events-none" />
+        <section className="relative min-h-[100svh] flex items-center pt-24 overflow-hidden">
+            {/* Background radial glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-6 w-full py-20">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    {/* LEFT */}
+            <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 lg:gap-8 items-center relative z-10">
+                {/* Left Column */}
+                <div>
                     <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="order-2 lg:order-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        className="text-xs font-mono text-zinc-500 mb-6"
                     >
-                        {/* Label */}
-                        <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-                            <span className="font-mono text-sm text-violet-400 bg-violet-500/10 border border-violet-500/20 px-3 py-1.5 rounded-full flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                                &gt; Available for opportunities
-                                <span className="animate-blink text-violet-400 ml-1">_</span>
-                            </span>
-                        </motion.div>
-
-                        {/* Heading */}
-                        <motion.h1 variants={itemVariants} className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-                            <span className="text-slate-100">Manjeet</span>
-                            <br />
-                            <span className="gradient-text">Singh</span>
-                        </motion.h1>
-
-                        {/* Tagline */}
-                        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-400 font-light mb-8">
-                            Full-Stack Developer &{" "}
-                            <span className="text-violet-400 font-medium">Content Creator</span>
-                        </motion.p>
-
-                        {/* Buttons */}
-                        <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-12">
-                            <a
-                                href="#projects"
-                                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white transition-all duration-200 shadow-xl shadow-violet-900/30 hover:shadow-violet-900/50 hover:-translate-y-0.5"
-                            >
-                                Explore My Work <RiArrowRightLine size={18} />
-                            </a>
-                            <a
-                                href="https://github.com/ManjeetAulakh"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold border border-white/15 text-slate-300 hover:border-violet-500/50 hover:text-white hover:bg-violet-500/5 transition-all duration-200"
-                            >
-                                <RiGithubLine size={20} /> GitHub
-                            </a>
-                        </motion.div>
-
-                        {/* Stat Cards */}
-                        <motion.div variants={containerVariants} className="grid grid-cols-3 gap-3">
-                            {stats.map((stat, i) => (
-                                <motion.div
-                                    key={stat.label}
-                                    variants={itemVariants}
-                                    className="glass rounded-2xl p-4 text-center hover:border-violet-500/20 transition-colors"
-                                >
-                                    <div className="text-violet-400 text-2xl flex justify-center mb-1">{stat.icon}</div>
-                                    <div className="text-2xl font-bold text-white">{stat.value}</div>
-                                    <div className="text-xs text-slate-500 mt-1 leading-tight">{stat.label}</div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+                        // software engineer & builder
                     </motion.div>
 
-                    {/* RIGHT */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="order-1 lg:order-2 flex justify-center"
-                    >
-                        <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                            {/* Rotating gradient border */}
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-400 p-[3px] animate-spin-slow">
-                                <div className="w-full h-full rounded-full bg-bg" />
-                            </div>
-
-                            {/* Profile image */}
-                            <div className="absolute inset-[3px] rounded-full overflow-hidden bg-surface-2">
-                                <div className="w-full h-full bg-gradient-to-br from-violet-900/40 via-surface-2 to-cyan-900/20 flex items-center justify-center">
-                                    {/* Placeholder avatar */}
-                                    <div className="w-full h-full bg-gradient-to-br from-violet-800/30 to-cyan-800/20 flex items-center justify-center">
-                                        <span className="font-bold text-8xl text-violet-300/30 select-none">MS</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Floating Tech Badges */}
-                            {techBadges.map((badge, i) => (
-                                <div
-                                    key={badge.label}
-                                    className={`absolute px-3 py-1.5 rounded-full text-xs font-mono font-semibold border bg-gradient-to-r ${badge.color} backdrop-blur-sm ${floatDelays[i]} whitespace-nowrap shadow-lg`}
-                                    style={badge.style}
+                    <h1 className="text-6xl md:text-8xl font-geist font-bold tracking-tighter leading-[1.1]">
+                        <div className="overflow-hidden flex flex-wrap gap-x-4">
+                            {line1.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ y: "100%" }}
+                                    animate={{ y: 0 }}
+                                    transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                                    className="text-white inline-block"
                                 >
-                                    {badge.label}
-                                </div>
+                                    {word}
+                                </motion.span>
                             ))}
                         </div>
+                        <div className="overflow-hidden flex flex-wrap gap-x-4 mt-2">
+                            {line2.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ y: "100%" }}
+                                    animate={{ y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                                    className="text-transparent"
+                                    style={{ WebkitTextStroke: "1px rgba(255,255,255,0.7)" }}
+                                >
+                                    {word}
+                                </motion.span>
+                            ))}
+                        </div>
+                    </h1>
+
+                    <RoleCycler />
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                        className="mt-6 text-lg text-zinc-400 font-inter max-w-lg leading-relaxed"
+                    >
+                        I build resilient backend architectures and highly polished digital experiences that wow users.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1 }}
+                        className="mt-10 flex flex-wrap items-center gap-4"
+                    >
+                        <a
+                            href="#projects"
+                            className="px-6 py-3 rounded-full font-medium bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-colors shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                        >
+                            View Projects
+                        </a>
+                        <a
+                            href="https://github.com/manjeetsingh"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-6 py-3 rounded-full font-medium border border-zinc-700 text-zinc-300 hover:text-white hover:border-emerald-500/50 transition-colors"
+                        >
+                            GitHub Profile
+                        </a>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 1.2 }}
+                        className="mt-16 flex items-center gap-8 md:gap-12"
+                    >
+                        <StatCounter value={15} label="Projects Built" delay={1.4} />
+                        <div className="w-px h-12 bg-zinc-800" />
+                        <StatCounter value={10} label="Technologies" delay={1.5} />
+                        <div className="w-px h-12 bg-zinc-800" />
+                        <StatCounter value={4} label="Years Coding" delay={1.6} />
                     </motion.div>
                 </div>
-            </div>
 
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-            >
-                <span className="text-xs text-slate-600 font-mono">scroll</span>
+                {/* Right Column (Terminal) */}
                 <motion.div
-                    animate={{ y: [0, 8, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-px h-8 bg-gradient-to-b from-violet-500/40 to-transparent"
-                />
-            </motion.div>
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="hidden lg:flex justify-end perspective-1000"
+                >
+                    <TerminalCard />
+                </motion.div>
+            </div>
         </section>
     );
 }

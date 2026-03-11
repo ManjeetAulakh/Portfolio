@@ -1,7 +1,11 @@
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Inter } from "next/font/google";
+import "@/styles/globals.css";
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -9,38 +13,34 @@ const inter = Inter({
     display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-    subsets: ["latin"],
-    variable: "--font-jetbrains",
-    display: "swap",
-});
-
 export const metadata: Metadata = {
-    title: "Manjeet Singh — Full-Stack Developer",
+    title: "Manjeet Singh — Software Engineer",
     description:
-        "Portfolio of Manjeet Singh — Full-Stack Java & React Developer, YouTube Creator, and AI Enthusiast building innovative solutions.",
+        "Full-Stack Software Engineer. Building precise, performant digital products.",
     keywords: [
-        "Manjeet Singh",
+        "Software Engineer",
         "Full-Stack Developer",
-        "Java",
-        "Spring Boot",
         "React",
+        "Spring Boot",
+        "Java",
         "Portfolio",
     ],
-    authors: [{ name: "Manjeet Singh" }],
 };
 
 export default function RootLayout({
     children,
-}: Readonly<{
+}: {
     children: React.ReactNode;
-}>) {
+}) {
     return (
-        <html lang="en" className="dark">
-            <body
-                className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-bg text-slate-200 antialiased`}
-            >
+        <html
+            lang="en"
+            className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable}`}
+        >
+            <body className="bg-bg text-zinc-100 font-inter antialiased overflow-x-hidden">
                 <CustomCursor />
+                <ScrollProgress />
+                <NoiseOverlay />
                 {children}
             </body>
         </html>

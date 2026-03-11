@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg: #09090b;
+    --surface: #111113;
+    --elevated: #18181b;
+    --hover: #1f1f23;
+    --accent: #10b981;
+    --accent-light: #34d399;
+    --accent-dark: #059669;
+    --border: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(255, 255, 255, 0.12);
+    --text: #fafafa;
+    --text-muted: #a1a1aa;
+    --text-dim: #52525b;
+}
+
+/* ── Reset cursor globally ── */
+* {
+    cursor: none !important;
+}
+
+/* ── Smooth scroll & base ── */
+html {
+    scroll-behavior: auto;
+    /* Lenis handles this */
+    background: var(--bg);
+    color: var(--text);
+}
+
+body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* ── Selection ── */
+::selection {
+    background: rgba(16, 185, 129, 0.25);
+    color: #fff;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Utility classes ── */
+@layer utilities {
+    .text-stroke {
+        -webkit-text-stroke: 1.5px var(--text);
+        color: transparent;
+    }
+
+    .text-stroke-accent {
+        -webkit-text-stroke: 1.5px var(--accent);
+        color: transparent;
+    }
+
+    .glass {
+        background: rgba(17, 17, 19, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--border);
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .section-pad {
+        padding: 8rem 0;
+    }
+
+    .marquee-mask {
+        mask-image: linear-gradient(to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%);
+        -webkit-mask-image: linear-gradient(to right,
+                transparent 0%,
+                black 10%,
+                black 90%,
+                transparent 100%);
+    }
+}

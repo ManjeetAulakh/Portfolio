@@ -19,9 +19,9 @@ const manjeet = {
 };`;
 
 const STATUS_PILLS = [
-    { label: "Open to Work", color: "bg-green-500/10 text-green-400 border-green-500/20", dot: "bg-green-400" },
-    { label: "Building ScienceHindi360", color: "bg-violet-500/10 text-violet-400 border-violet-500/20", dot: "bg-violet-400" },
-    { label: "Learning AWS", color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20", dot: "bg-cyan-400" },
+    { label: "Open to Work", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20", dot: "bg-emerald-400" },
+    { label: "Building ScienceHindi360", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20", dot: "bg-emerald-400" },
+    { label: "Learning AWS", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20", dot: "bg-emerald-400" },
 ];
 
 function TerminalCard() {
@@ -44,24 +44,24 @@ function TerminalCard() {
     }, [inView, started]);
 
     return (
-        <div ref={ref} className="glass rounded-2xl overflow-hidden">
+        <div ref={ref} className="glass rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
             {/* Terminal header */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-surface-2/60">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-zinc-900">
                 <span className="w-3 h-3 rounded-full bg-red-400/80" />
                 <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
-                <span className="w-3 h-3 rounded-full bg-green-400/80" />
+                <span className="w-3 h-3 rounded-full bg-emerald-400/80" />
                 <span className="ml-3 font-mono text-xs text-slate-500">about.ts</span>
             </div>
             {/* Code body */}
-            <div className="p-5 min-h-[280px]">
+            <div className="p-5 min-h-[280px] bg-zinc-950/80">
                 <pre className="font-mono text-sm leading-relaxed text-slate-300 whitespace-pre-wrap">
                     <span className="text-slate-500">{displayText.split("\n").map((line, i) => {
                         const lineNum = String(i + 1).padStart(2, " ");
                         const colored = line
-                            .replace(/(@\w+)/g, '<span class="text-violet-400">$1</span>')
-                            .replace(/(".*?")/g, '<span class="text-green-400">$1</span>')
+                            .replace(/(@\w+)/g, '<span class="text-emerald-400">$1</span>')
+                            .replace(/(".*?")/g, '<span class="text-emerald-300">$1</span>')
                             .replace(/(\/\*\*|@|\*\/|\*)/g, '<span class="text-slate-500">$1</span>')
-                            .replace(/(\bconst\b|\blet\b|\bvar\b)/g, '<span class="text-violet-400">$1</span>');
+                            .replace(/(\bconst\b|\blet\b|\bvar\b)/g, '<span class="text-emerald-400">$1</span>');
                         return (
                             <span key={i} className="flex">
                                 <span className="text-slate-600 select-none w-6 mr-4 text-right shrink-0">{lineNum}</span>
@@ -69,7 +69,7 @@ function TerminalCard() {
                             </span>
                         );
                     })}</span>
-                    <span className="animate-blink text-violet-400">|</span>
+                    <span className="animate-blink text-emerald-400">|</span>
                 </pre>
             </div>
         </div>
@@ -81,7 +81,7 @@ export default function AboutSection() {
     const inView = useInView(ref, { once: true, margin: "-80px" });
 
     return (
-        <section id="about" className="section-pad">
+        <section id="about" className="section-pad relative z-10">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Section Header */}
                 <motion.div
@@ -90,9 +90,9 @@ export default function AboutSection() {
                     ref={ref}
                     className="mb-16 text-center"
                 >
-                    <span className="font-mono text-sm text-violet-400 tracking-widest uppercase">Who I Am</span>
-                    <h2 className="mt-2 text-4xl md:text-5xl font-bold">
-                        About <span className="gradient-text">Me</span>
+                    <span className="font-mono text-sm text-emerald-400 tracking-widest uppercase">Who I Am</span>
+                    <h2 className="mt-2 text-4xl md:text-5xl font-bold font-geist">
+                        About <span className="text-emerald-400">Me</span>
                     </h2>
                 </motion.div>
 
@@ -111,25 +111,25 @@ export default function AboutSection() {
                         initial={{ opacity: 0, x: 40 }}
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.6, delay: 0.35 }}
-                        className="flex flex-col gap-6"
+                        className="flex flex-col gap-6 font-inter"
                     >
-                        <div className="space-y-5 text-slate-400 text-base leading-relaxed">
+                        <div className="space-y-5 text-zinc-400 text-base leading-relaxed">
                             <p>
-                                Hey! I&apos;m <span className="text-white font-semibold">Manjeet Singh</span> — a Full-Stack Developer
+                                Hey! I&apos;m <span className="text-zinc-100 font-semibold">Manjeet Singh</span> — a Full-Stack Developer
                                 pursuing my B.E. at Lovely Professional University. I build robust backends with{" "}
-                                <span className="text-violet-400">Java & Spring Boot</span> and sleek frontends with{" "}
-                                <span className="text-cyan-400">React</span>.
+                                <span className="text-emerald-400">Java & Spring Boot</span> and sleek frontends with{" "}
+                                <span className="text-emerald-400">React</span>.
                             </p>
                             <p>
                                 Beyond code, I run two YouTube channels —{" "}
-                                <span className="text-white font-medium">ScienceHindi360</span> and{" "}
-                                <span className="text-white font-medium">Beyond Belief Space</span> — where I use AI tools to bring
+                                <span className="text-zinc-100 font-medium">ScienceHindi360</span> and{" "}
+                                <span className="text-zinc-100 font-medium">Beyond Belief Space</span> — where I use AI tools to bring
                                 space science to life for audiences in Hindi and English.
                             </p>
                             <p>
                                 I believe great software is both{" "}
-                                <span className="text-violet-400">technically sound</span> and{" "}
-                                <span className="text-cyan-400">visually stunning</span> — whether it&apos;s a REST API or a video about black holes.
+                                <span className="text-emerald-400">technically sound</span> and{" "}
+                                <span className="text-emerald-400">visually stunning</span> — whether it&apos;s a REST API or a video about black holes.
                             </p>
                         </div>
 
@@ -138,7 +138,7 @@ export default function AboutSection() {
                             {STATUS_PILLS.map((pill) => (
                                 <span
                                     key={pill.label}
-                                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium border ${pill.color}`}
+                                    className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono border ${pill.color}`}
                                 >
                                     <span className={`w-1.5 h-1.5 rounded-full ${pill.dot} animate-pulse`} />
                                     {pill.label}
@@ -147,18 +147,20 @@ export default function AboutSection() {
                         </div>
 
                         {/* Quick links */}
-                        <div className="flex gap-3 pt-2">
+                        <div className="flex gap-3 pt-4">
                             <a
                                 href="https://www.linkedin.com/in/manjeetsingh0"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-violet-600 to-purple-600 text-white hover:shadow-lg hover:shadow-violet-900/30 transition-all hover:-translate-y-0.5"
+                                className="px-5 py-2.5 rounded-full text-sm font-semibold bg-emerald-500 text-zinc-950 hover:bg-emerald-400 transition-colors shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                                data-cursor="button"
                             >
                                 LinkedIn
                             </a>
                             <a
                                 href="#contact"
-                                className="px-5 py-2.5 rounded-full text-sm font-semibold border border-white/10 text-slate-300 hover:border-violet-500/40 hover:text-white transition-all"
+                                className="px-5 py-2.5 rounded-full text-sm font-semibold border border-zinc-800 text-zinc-300 hover:border-emerald-500/50 hover:text-white transition-colors"
+                                data-cursor="button"
                             >
                                 Reach Out →
                             </a>

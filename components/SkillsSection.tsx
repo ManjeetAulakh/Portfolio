@@ -1,155 +1,120 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-const CATEGORIES = ["All", "Frontend", "Backend", "Database", "DevOps", "Tools"];
-
-const skills = [
-    // Frontend
-    { name: "React.js", category: "Frontend", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { name: "JavaScript", category: "Frontend", level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-    { name: "TypeScript", category: "Frontend", level: 70, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-    { name: "HTML5", category: "Frontend", level: 92, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-    { name: "CSS3", category: "Frontend", level: 88, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-    { name: "Tailwind CSS", category: "Frontend", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-    // Backend
-    { name: "Java", category: "Backend", level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-    { name: "Spring Boot", category: "Backend", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
-    { name: "Hibernate", category: "Backend", level: 78, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hibernate/hibernate-plain.svg" },
-    { name: "Node.js", category: "Backend", level: 60, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    // Database
-    { name: "PostgreSQL", category: "Database", level: 80, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-    { name: "MySQL", category: "Database", level: 78, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { name: "MongoDB", category: "Database", level: 60, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-    // DevOps
-    { name: "Docker", category: "DevOps", level: 75, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-    { name: "AWS", category: "DevOps", level: 65, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
-    { name: "Linux", category: "DevOps", level: 72, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
-    // Tools
-    { name: "Git", category: "Tools", level: 88, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-    { name: "GitHub", category: "Tools", level: 88, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-    { name: "IntelliJ IDEA", category: "Tools", level: 85, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" },
-    { name: "VS Code", category: "Tools", level: 90, icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+const SKILL_CATEGORIES = [
+    {
+        title: "Frontend",
+        skills: [
+            { name: "React", icon: "react/react-original.svg" },
+            { name: "Next.js", icon: "nextjs/nextjs-original.svg", invertDark: true },
+            { name: "TypeScript", icon: "typescript/typescript-original.svg" },
+            { name: "Tailwind CSS", icon: "tailwindcss/tailwindcss-original.svg" },
+            { name: "Framer Motion", icon: "framermotion/framermotion-original.svg" },
+        ]
+    },
+    {
+        title: "Backend & Database",
+        skills: [
+            { name: "Java", icon: "java/java-original.svg" },
+            { name: "Spring Boot", icon: "spring/spring-original.svg" },
+            { name: "Node.js", icon: "nodejs/nodejs-original.svg" },
+            { name: "PostgreSQL", icon: "postgresql/postgresql-original.svg" },
+            { name: "Redis", icon: "redis/redis-original.svg" },
+        ]
+    },
+    {
+        title: "Tools & DevOps",
+        skills: [
+            { name: "Git", icon: "git/git-original.svg" },
+            { name: "Docker", icon: "docker/docker-original.svg" },
+            { name: "AWS", icon: "amazonwebservices/amazonwebservices-original-wordmark.svg", invertDark: true },
+            { name: "Linux", icon: "linux/linux-original.svg" },
+            { name: "Figma", icon: "figma/figma-original.svg" },
+        ]
+    }
 ];
 
-const currently = ["Next.js", "AWS Solutions Architect", "System Design"];
-
-function SkillCard({ skill, index }: { skill: typeof skills[0]; index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-50px" });
-
-    return (
-        <motion.div
-            ref={ref}
-            layout
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, delay: index * 0.04 }}
-            className="glass rounded-xl p-4 hover:border-violet-500/20 transition-colors group"
-        >
-            <div className="flex items-center gap-3 mb-3">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={skill.icon} alt={skill.name} className="w-8 h-8 object-contain" />
-                <span className="font-mono text-sm font-semibold text-slate-200">{skill.name}</span>
-            </div>
-            <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-400"
-                    initial={{ width: 0 }}
-                    animate={{ width: inView ? `${skill.level}%` : 0 }}
-                    transition={{ duration: 1, delay: 0.2 + index * 0.05, ease: "easeOut" }}
-                />
-            </div>
-            <div className="flex justify-end mt-1">
-                <span className="text-xs text-slate-600 font-mono">{skill.level}%</span>
-            </div>
-        </motion.div>
-    );
-}
+const MARQUEE_LOGOS = [
+    "react/react-original.svg",
+    "nextjs/nextjs-original.svg",
+    "typescript/typescript-original.svg",
+    "tailwindcss/tailwindcss-original.svg",
+    "java/java-original.svg",
+    "spring/spring-original.svg",
+    "postgresql/postgresql-original.svg",
+    "docker/docker-original.svg",
+    "amazonwebservices/amazonwebservices-original-wordmark.svg",
+    "git/git-original.svg",
+    "figma/figma-original.svg",
+];
 
 export default function SkillsSection() {
-    const [activeTab, setActiveTab] = useState("All");
-    const ref = useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
-
-    const filtered = activeTab === "All" ? skills : skills.filter((s) => s.category === activeTab);
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section id="skills" className="section-pad">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    ref={ref}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="mb-12 text-center"
-                >
-                    <span className="font-mono text-sm text-violet-400 tracking-widest uppercase">Tech Arsenal</span>
-                    <h2 className="mt-2 text-4xl md:text-5xl font-bold">
-                        Technical <span className="gradient-text">Skills</span>
+        <section id="stack" className="section-pad relative w-full overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 mb-20" ref={ref}>
+                <div className="mb-16">
+                    <span className="font-mono text-sm text-emerald-400 tracking-widest uppercase">My Arsenal</span>
+                    <h2 className="mt-2 text-4xl md:text-5xl font-bold font-geist">
+                        Tech <span className="text-zinc-600">Stack</span>
                     </h2>
-                    <p className="mt-4 text-slate-500 max-w-xl mx-auto">
-                        Technologies I use to bring products to life.
-                    </p>
-                </motion.div>
+                </div>
 
-                {/* Tabs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2 }}
-                    className="flex flex-wrap gap-2 justify-center mb-10"
-                >
-                    {CATEGORIES.map((cat) => (
-                        <button
-                            key={cat}
-                            onClick={() => setActiveTab(cat)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeTab === cat
-                                    ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-900/30"
-                                    : "glass text-slate-400 hover:text-white hover:border-violet-500/30"
-                                }`}
+                <div className="flex flex-col gap-12">
+                    {SKILL_CATEGORIES.map((category, catIndex) => (
+                        <motion.div
+                            key={category.title}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.6, delay: catIndex * 0.15 }}
                         >
-                            {cat}
-                        </button>
+                            <h3 className="text-sm font-mono text-zinc-500 mb-4 tracking-wider uppercase">{category.title}</h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                {category.skills.map((skill) => (
+                                    <div
+                                        key={skill.name}
+                                        className="group flex flex-col items-center justify-center p-6 rounded-xl bg-zinc-900/40 border border-white/5 hover:bg-zinc-800/80 hover:border-emerald-500/30 hover:-translate-y-1 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_10px_30px_rgba(16,185,129,0.1)]"
+                                    >
+                                        <div className="w-12 h-12 mb-4 drop-shadow-lg group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all duration-300">
+                                            <img
+                                                src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.icon}`}
+                                                alt={skill.name}
+                                                className={`w-full h-full object-contain ${skill.invertDark ? "invert" : ""}`}
+                                            />
+                                        </div>
+                                        <span className="text-xs font-mono text-zinc-400 group-hover:text-emerald-400 transition-colors">
+                                            {skill.name}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
                     ))}
-                </motion.div>
+                </div>
+            </div>
 
-                {/* Skills Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-                >
-                    <AnimatePresence mode="popLayout">
-                        {filtered.map((skill, i) => (
-                            <SkillCard key={skill.name} skill={skill} index={i} />
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+            {/* Marquee Strip */}
+            <div className="w-full relative mt-24 py-8 overflow-hidden mask-edges group">
+                {/* Overlay gradient to fade edges */}
+                <div className="absolute inset-y-0 left-0 w-[15%] bg-gradient-to-r from-bg to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-[15%] bg-gradient-to-l from-bg to-transparent z-10 pointer-events-none" />
 
-                {/* Currently Learning */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5 }}
-                    className="mt-12 flex flex-col sm:flex-row items-center gap-4 p-5 glass rounded-2xl"
-                >
-                    <div className="flex items-center gap-2 text-sm font-mono text-slate-400">
-                        <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                        Currently Learning:
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {currently.map((item) => (
-                            <span
-                                key={item}
-                                className="px-3 py-1 rounded-full text-xs font-mono border border-cyan-500/20 text-cyan-400 bg-cyan-500/5"
-                            >
-                                {item}
-                            </span>
-                        ))}
-                    </div>
-                </motion.div>
+                <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+                    {[...MARQUEE_LOGOS, ...MARQUEE_LOGOS, ...MARQUEE_LOGOS, ...MARQUEE_LOGOS].map((logo, i) => (
+                        <div key={i} className="flex-shrink-0 w-24 h-12 mx-8 opacity-40 hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <img
+                                src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${logo}`}
+                                alt=""
+                                className={`max-w-full max-h-full object-contain ${(logo.includes('next') || logo.includes('amazon')) ? "invert" : "grayscale hover:grayscale-0"}`}
+                                loading="lazy"
+                            />
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

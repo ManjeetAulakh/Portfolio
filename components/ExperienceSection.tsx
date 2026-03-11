@@ -1,194 +1,129 @@
 "use client";
 
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { HiBriefcase, HiAcademicCap } from "react-icons/hi";
+import { useRef } from "react";
 
-const experiences = [
+const EXPERIENCES = [
     {
-        type: "work",
-        date: "2025 — Present",
+        company: "Personal Projects / Freelance",
         role: "Full-Stack Developer",
-        org: "Personal Projects / Freelance",
-        bullets: [
-            "Built Quiz Management System with Spring Boot + React, JWT auth, and attempt tracking.",
-            "Developed Smart Contact Manager with OAuth2 (Google/GitHub), Thymeleaf UI.",
-            "Implemented secure REST APIs, role-based access, PostgreSQL with JPA/Hibernate.",
-        ],
+        date: "2024 — Present",
         current: true,
-    },
-    {
-        type: "work",
-        date: "2024 — 2025",
-        role: "Developer & Content Creator",
-        org: "Side Projects + YouTube",
         bullets: [
-            "Launched ScienceHindi360 and Beyond Belief Space YouTube channels.",
-            "Containerized services with Docker; improved frontend UX.",
-            "Wrote unit/integration tests with JUnit and Mockito.",
-            "Built an AI-powered content pipeline for video production.",
+            "Architected and deployed a highly scalable Quiz Management System using Spring Boot and React.",
+            "Implemented secure OAuth2 integrations and advanced rate limiting using Redis.",
+            "Containerized multiple services using Docker, improving deployment reliability by 40%.",
         ],
-        current: false,
     },
-];
-
-const education = [
     {
-        type: "edu",
+        company: "ScienceHindi360 & Beyond Belief Space",
+        role: "Content Creator & Developer",
+        date: "2022 — Present",
+        current: false,
+        bullets: [
+            "Grew educational YouTube channels to a combined audience, leveraging AI tools for script generation and video production.",
+            "Built custom automation scripts and landing pages to support channel workflows.",
+            "Distilled complex astrophysics concepts into accessible Hindi and English content.",
+        ],
+    },
+    {
+        company: "Lovely Professional University",
+        role: "B.E. Computer Science Student",
         date: "2022 — 2026",
-        role: "Bachelor of Engineering",
-        org: "Lovely Professional University",
-        grade: "CGPA: 7.8 / 10",
         current: false,
-    },
-    {
-        type: "edu",
-        date: "2020 — 2021",
-        role: "Higher Secondary School",
-        org: "Mother India Convent School",
-        grade: "Grade: 70%",
-        current: false,
+        bullets: [
+            "Focusing on System Design, Data Structures, and Cloud Computing.",
+            "Led a team of 4 in developing a campus-wide inventory tracking application.",
+            "Active member of the open-source engineering club, mentoring junior students in React.",
+        ],
     },
 ];
 
-function TimelineCard({
-    item,
-    index,
-    side,
-    inView,
-}: {
-    item: (typeof experiences)[0] | (typeof education)[0];
-    index: number;
-    side: "left" | "right";
-    inView: boolean;
-}) {
-    const isWork = item.type === "work";
-    const hasBullets = "bullets" in item;
+function TimelineItem({ exp, index }: { exp: any; index: number }) {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <div className={`flex ${side === "right" ? "flex-row-reverse" : "flex-row"} items-start gap-0 relative`}>
-            {/* Card */}
-            <motion.div
-                initial={{ opacity: 0, x: side === "left" ? -60 : 60 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                className={`glass rounded-2xl p-5 w-[calc(50%-32px)] ${side === "right" ? "mr-auto" : "ml-auto"}`}
-            >
-                <span className="font-mono text-xs text-slate-500 mb-2 block">{item.date}</span>
-                <h3 className="text-base font-bold text-white mb-1">{item.role}</h3>
-                <div className="text-sm font-semibold text-violet-400 mb-3">{item.org}</div>
-                {hasBullets && (
-                    <ul className="space-y-1.5">
-                        {(item as typeof experiences[0]).bullets.map((b, i) => (
-                            <li key={i} className="text-slate-400 text-sm leading-relaxed flex gap-2">
-                                <span className="text-violet-500 mt-1.5 shrink-0">▸</span>
-                                {b}
+        <div className="relative pl-8 md:pl-0 w-full" ref={ref}>
+            {/* Desktop timeline node */}
+            <div className="hidden md:block absolute left-1/2 -ml-[5px] top-6 z-10">
+                {exp.current ? (
+                    <div className="relative flex h-3 w-3 items-center justify-center">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </div>
+                ) : (
+                    <div className="h-2.5 w-2.5 rounded-full bg-zinc-700 border-2 border-zinc-950" />
+                )}
+            </div>
+
+            {/* Mobile timeline node */}
+            <div className="md:hidden absolute left-[-5px] top-6 z-10">
+                {exp.current ? (
+                    <div className="relative flex h-3 w-3 items-center justify-center">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </div>
+                ) : (
+                    <div className="h-2.5 w-2.5 rounded-full bg-zinc-700 border-2 border-bg" />
+                )}
+            </div>
+
+            {/* Content Card container - desktop alternates sides, mobile always right */}
+            <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:mr-auto" : "md:pl-12 md:ml-auto"}`}>
+                <motion.div
+                    initial={{ opacity: 0, x: index % 2 === 0 && window.innerWidth >= 768 ? -40 : 40 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                    className="glass rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl hover:border-emerald-500/20 transition-colors group relative"
+                >
+                    {/* Subtle glow on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-emerald-500/0 group-hover:from-emerald-500/5 group-hover:to-transparent rounded-2xl transition-colors pointer-events-none" />
+
+                    <h3 className="text-xl md:text-2xl font-bold font-geist text-zinc-100 group-hover:text-emerald-400 transition-colors">
+                        {exp.company}
+                    </h3>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 mb-6">
+                        <span className="font-mono text-sm text-emerald-400 tracking-tight">{exp.role}</span>
+                        <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-zinc-700" />
+                        <span className="font-mono text-xs text-zinc-500 uppercase tracking-widest">{exp.date}</span>
+                    </div>
+                    <ul className="space-y-3">
+                        {exp.bullets.map((bullet: string, i: number) => (
+                            <li key={i} className="text-sm font-inter text-zinc-400 leading-relaxed flex items-start gap-3">
+                                <span className="text-emerald-500/50 mt-1 flex-shrink-0">▹</span>
+                                <span>{bullet}</span>
                             </li>
                         ))}
                     </ul>
-                )}
-                {"grade" in item && (
-                    <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-mono bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
-                        ★ {(item as typeof education[0]).grade}
-                    </span>
-                )}
-            </motion.div>
-
-            {/* Center Node */}
-            <div className="flex flex-col items-center shrink-0 w-16">
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={inView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.15 + 0.1 }}
-                    className="relative"
-                >
-                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${isWork ? "from-violet-500 to-purple-600" : "from-cyan-500 to-blue-600"} flex items-center justify-center shadow-lg z-10 relative`}>
-                        {isWork ? <HiBriefcase className="text-white text-lg" /> : <HiAcademicCap className="text-white text-lg" />}
-                    </div>
-                    {item.current && (
-                        <div className="absolute inset-0 rounded-full bg-violet-500/30 animate-pulse-ring" />
-                    )}
                 </motion.div>
             </div>
-
-            {/* Spacer for the other side */}
-            <div className="w-[calc(50%-32px)]" />
-        </div>
+        </div >
     );
 }
 
 export default function ExperienceSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
-
     return (
-        <section id="experience" className="section-pad">
+        <section id="experience" className="section-pad relative w-full overflow-hidden">
             <div className="max-w-5xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    ref={ref}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="mb-16 text-center"
-                >
-                    <span className="font-mono text-sm text-violet-400 tracking-widest uppercase">My Journey</span>
-                    <h2 className="mt-2 text-4xl md:text-5xl font-bold">
-                        Experience & <span className="gradient-text">Education</span>
+                <div className="mb-20 md:text-center">
+                    <span className="font-mono text-sm text-emerald-400 tracking-widest uppercase">The Journey</span>
+                    <h2 className="mt-2 text-4xl md:text-5xl font-bold font-geist">
+                        My <span className="text-zinc-600">Experience</span>
                     </h2>
-                </motion.div>
+                </div>
 
-                {/* Timeline */}
                 <div className="relative">
-                    {/* Center line */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/80 via-purple-500/40 to-transparent -translate-x-1/2" />
+                    {/* Center line (Desktop) */}
+                    <div className="hidden md:block absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-800 to-transparent" />
 
-                    {/* Experience items */}
-                    <div className="mb-10">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={inView ? { opacity: 1 } : {}}
-                            className="flex items-center justify-center mb-8"
-                        >
-                            <div className="px-4 py-2 glass rounded-full flex items-center gap-2 text-sm font-semibold text-violet-400">
-                                <HiBriefcase /> Experience
-                            </div>
-                        </motion.div>
-                        <div className="space-y-10">
-                            {experiences.map((exp, i) => (
-                                <TimelineCard
-                                    key={exp.role + exp.date}
-                                    item={exp}
-                                    index={i}
-                                    side={i % 2 === 0 ? "left" : "right"}
-                                    inView={inView}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    {/* Left line (Mobile) */}
+                    <div className="md:hidden absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-800 to-transparent" />
 
-                    {/* Education items */}
-                    <div>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={inView ? { opacity: 1 } : {}}
-                            transition={{ delay: 0.4 }}
-                            className="flex items-center justify-center mb-8 mt-10"
-                        >
-                            <div className="px-4 py-2 glass rounded-full flex items-center gap-2 text-sm font-semibold text-cyan-400">
-                                <HiAcademicCap /> Education
-                            </div>
-                        </motion.div>
-                        <div className="space-y-10">
-                            {education.map((edu, i) => (
-                                <TimelineCard
-                                    key={edu.role + edu.date}
-                                    item={edu}
-                                    index={i + experiences.length}
-                                    side={i % 2 === 0 ? "left" : "right"}
-                                    inView={inView}
-                                />
-                            ))}
-                        </div>
+                    <div className="flex flex-col gap-12 md:gap-24 relative z-10 py-10">
+                        {EXPERIENCES.map((exp, i) => (
+                            <TimelineItem key={i} exp={exp} index={i} />
+                        ))}
                     </div>
                 </div>
             </div>

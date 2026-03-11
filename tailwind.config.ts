@@ -2,31 +2,57 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
     content: [
-        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./app/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./lib/**/*.{ts,tsx}",
     ],
     theme: {
         extend: {
             fontFamily: {
-                sans: ["var(--font-inter)"],
-                mono: ["var(--font-jetbrains)"],
+                geist: ["var(--font-geist-sans)"],
+                mono: ["var(--font-geist-mono)"],
+                inter: ["var(--font-inter)"],
             },
             colors: {
-                bg: "#0a0a0f",
-                surface: "#111117",
-                "surface-2": "#1a1a24",
-                accent: "#7c3aed",
-                "accent-2": "#06b6d4",
-                muted: "#64748b",
-            },
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-                "accent-gradient": "linear-gradient(135deg, #7c3aed, #a855f7, #06b6d4)",
+                bg: {
+                    DEFAULT: "#09090b",
+                    surface: "#111113",
+                    elevated: "#18181b",
+                    hover: "#1f1f23",
+                },
+                accent: {
+                    DEFAULT: "#10b981",
+                    light: "#34d399",
+                    dark: "#059669",
+                    muted: "rgba(16,185,129,0.12)",
+                },
+                border: {
+                    DEFAULT: "rgba(255,255,255,0.06)",
+                    hover: "rgba(255,255,255,0.12)",
+                    accent: "rgba(16,185,129,0.3)",
+                },
             },
             keyframes: {
-                marquee: {
+                "glitch": {
+                    "0%, 100%": { transform: "translateX(0)" },
+                    "20%": { transform: "translateX(-2px)" },
+                    "40%": { transform: "translateX(2px)" },
+                    "60%": { transform: "translateX(-1px)" },
+                    "80%": { transform: "translateX(1px)" },
+                },
+                "flip-in": {
+                    "0%": { transform: "rotateX(90deg)", opacity: "0" },
+                    "100%": { transform: "rotateX(0deg)", opacity: "1" },
+                },
+                "flip-out": {
+                    "0%": { transform: "rotateX(0deg)", opacity: "1" },
+                    "100%": { transform: "rotateX(-90deg)", opacity: "0" },
+                },
+                "blink": {
+                    "0%, 100%": { opacity: "1" },
+                    "50%": { opacity: "0" },
+                },
+                "marquee": {
                     "0%": { transform: "translateX(0%)" },
                     "100%": { transform: "translateX(-50%)" },
                 },
@@ -34,42 +60,28 @@ const config: Config = {
                     "0%": { transform: "translateX(-50%)" },
                     "100%": { transform: "translateX(0%)" },
                 },
-                float: {
-                    "0%, 100%": { transform: "translateY(0px)" },
-                    "50%": { transform: "translateY(-12px)" },
+                "sweep": {
+                    "0%": { backgroundPosition: "-200% 0" },
+                    "100%": { backgroundPosition: "200% 0" },
                 },
-                "pulse-ring": {
-                    "0%": { transform: "scale(1)", opacity: "0.8" },
-                    "100%": { transform: "scale(1.8)", opacity: "0" },
-                },
-                "spin-slow": {
-                    from: { transform: "rotate(0deg)" },
-                    to: { transform: "rotate(360deg)" },
-                },
-                blink: {
-                    "0%, 100%": { opacity: "1" },
-                    "50%": { opacity: "0" },
-                },
-                shimmer: {
-                    "0%": { backgroundPosition: "-200% center" },
-                    "100%": { backgroundPosition: "200% center" },
+                "float": {
+                    "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+                    "50%": { transform: "translateY(-10px) rotate(3deg)" },
                 },
             },
             animation: {
-                marquee: "marquee 30s linear infinite",
-                "marquee-reverse": "marquee-reverse 25s linear infinite",
-                float: "float 3s ease-in-out infinite",
-                "float-delay-1": "float 3.5s ease-in-out 0.5s infinite",
-                "float-delay-2": "float 4s ease-in-out 1s infinite",
-                "float-delay-3": "float 3.2s ease-in-out 1.5s infinite",
-                "float-delay-4": "float 3.8s ease-in-out 0.3s infinite",
-                "pulse-ring": "pulse-ring 1.5s ease-out infinite",
-                "spin-slow": "spin-slow 8s linear infinite",
-                blink: "blink 1s step-end infinite",
-                shimmer: "shimmer 2.5s linear infinite",
+                "glitch": "glitch 0.3s ease-in-out",
+                "flip-in": "flip-in 0.4s ease-out forwards",
+                "flip-out": "flip-out 0.3s ease-in forwards",
+                "blink": "blink 1s step-end infinite",
+                "marquee": "marquee var(--marquee-duration, 30s) linear infinite",
+                "marquee-reverse": "marquee-reverse var(--marquee-duration, 30s) linear infinite",
+                "sweep": "sweep 0.6s ease forwards",
+                "float": "float 6s ease-in-out infinite",
             },
         },
     },
     plugins: [],
 };
+
 export default config;

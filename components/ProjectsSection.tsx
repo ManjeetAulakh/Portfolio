@@ -1,245 +1,200 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
-import { RiGithubLine, RiExternalLinkLine, RiArrowLeftLine, RiArrowRightLine } from "react-icons/ri";
-import { HiFolderOpen } from "react-icons/hi";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { ExternalLink, Github, Folder } from "lucide-react";
 
-const featuredProjects = [
+const FEATURED_PROJECTS = [
     {
-        name: "Quiz Management System",
-        description: "Full-stack quiz platform with JWT auth, question creation, timed attempts, and result analytics dashboard.",
-        tech: ["Spring Boot", "React", "JWT", "PostgreSQL"],
-        github: "https://github.com/ManjeetAulakh/quiz",
-        live: null,
-        gradient: "from-violet-600/20 to-cyan-600/20",
+        title: "Quiz Management System",
+        description:
+            "A comprehensive scalable quiz platform supporting user authentication, dynamic quiz creation, and real-time attempt tracking. Built with a robust Java/Spring Boot backend honoring clean architecture principles.",
+        tech: ["Java", "Spring Boot", "React", "JWT", "PostgreSQL"],
+        github: "https://github.com/manjeetsingh",
+        live: "#",
+        image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&auto=format&fit=crop",
     },
     {
-        name: "Smart Contact Manager",
-        description: "Secure contact app with OAuth2 login (Google & GitHub), profile saving, responsive UI, and smart search/filtering.",
-        tech: ["Spring Boot", "OAuth2", "Thymeleaf", "MySQL"],
-        github: "https://github.com/ManjeetAulakh/contactManager",
-        live: null,
-        gradient: "from-cyan-600/20 to-blue-600/20",
-    },
-    {
-        name: "Tech Blog Platform",
-        description: "Full-stack blogging platform with user roles, rich content creation, comment system, and JWT-protected endpoints.",
-        tech: ["Spring Boot", "React", "JWT", "Hibernate"],
-        github: "https://github.com/ManjeetAulakh/techblog-backend",
-        live: null,
-        gradient: "from-purple-600/20 to-pink-600/20",
+        title: "Smart Contact Manager",
+        description:
+            "A secure cloud-based contact management solution with OAuth2 integration (Google/GitHub) and role-based access control. Features a responsive Thymeleaf UI and reliable data persistence.",
+        tech: ["Spring Security", "OAuth2", "Thymeleaf", "Docker"],
+        github: "https://github.com/manjeetsingh",
+        live: "#",
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1470&auto=format&fit=crop",
     },
 ];
 
-const otherProjects = [
+const OTHER_PROJECTS = [
     {
-        name: "REST API Gateway",
-        description: "Microservice API gateway with rate limiting, authentication middleware, and request routing.",
-        tech: ["Java", "Spring Cloud", "Docker"],
+        title: "Tech Blog Platform",
+        description: "A complete blogging platform with Markdown support, commenting system, and admin dashboard.",
+        tech: ["React", "Spring Boot", "MySQL"],
         github: "#",
     },
     {
-        name: "ScienceHindi360 Site",
-        description: "Landing page for the YouTube channel with video embeds, stats, and newsletter signup.",
-        tech: ["React", "Tailwind", "Next.js"],
+        title: "Inventory API",
+        description: "High-performance REST API for inventory tracking with Redis caching and rate limiting.",
+        tech: ["Java 21", "Redis", "Spring WebFlux"],
         github: "#",
     },
     {
-        name: "CI/CD Pipeline Template",
-        description: "GitHub Actions workflow templates for Java Spring Boot projects with automated testing and Docker builds.",
-        tech: ["GitHub Actions", "Docker", "Jenkins"],
+        title: "Portfolio V1",
+        description: "My previous developer portfolio built with pure HTML, CSS, and vanilla JavaScript.",
+        tech: ["HTML5", "CSS3", "JS"],
+        github: "#",
+        live: "#",
+    },
+    {
+        title: "ScienceHindi360 Web",
+        description: "A content aggregator for my space science YouTube channel, featuring article translations.",
+        tech: ["Next.js", "Tailwind"],
         github: "#",
     },
     {
-        name: "Portfolio v1",
-        description: "Original portfolio built with vanilla HTML, CSS, and JavaScript with custom animations.",
-        tech: ["HTML", "CSS", "JavaScript"],
-        github: "https://github.com/ManjeetAulakh/manjeetsingh.github.io",
-    },
-    {
-        name: "Auth Starter Kit",
-        description: "Boilerplate Spring Boot project with JWT + OAuth2 ready to go — saves setup time on new projects.",
-        tech: ["Spring Security", "JWT", "OAuth2"],
+        title: "Task Orchestrator",
+        description: "A distributed cron job manager using RabbitMQ for reliable message queuing.",
+        tech: ["Spring AMQP", "RabbitMQ"],
         github: "#",
     },
     {
-        name: "Discord Bot",
-        description: "A Discord bot for study groups with quiz commands, reminders, and resource links.",
-        tech: ["Java", "JDA", "PostgreSQL"],
+        title: "Code Snippet Vault",
+        description: "A CLI tool and web app for saving and retrieving commonly used code snippets.",
+        tech: ["Go", "React"],
         github: "#",
     },
 ];
 
-function BrowserFrame({ gradient }: { gradient: string }) {
+function FeaturedProject({ project, index }: { project: any; index: number }) {
+    const isEven = index % 2 === 0;
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-100px" });
+
     return (
-        <div className="rounded-xl overflow-hidden border border-white/10">
-            <div className="flex items-center gap-1.5 px-4 py-2.5 bg-surface-2 border-b border-white/5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-                <div className="ml-3 flex-1 bg-surface rounded px-3 py-1 text-xs text-slate-600 font-mono">
-                    https://project.demo
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full group"
+        >
+            <div className={`flex flex-col gap-8 lg:gap-12 items-center ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"}`}>
+                {/* Image side */}
+                <div className="w-full lg:w-3/5 rounded-2xl overflow-hidden glass border border-white/10 shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group-hover:border-white/20">
+                    <div className="bg-zinc-900 border-b border-white/5 px-4 py-3 flex items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-zinc-700 group-hover:bg-red-500/80 transition-colors" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-zinc-700 group-hover:bg-yellow-500/80 transition-colors" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-zinc-700 group-hover:bg-emerald-500/80 transition-colors" />
+                    </div>
+                    <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
+                        {/* Fake image using a gradient since we don't have actual images yet, but an img tag is provided */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-950 mix-blend-overlay z-10" />
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            className="object-cover w-full h-full opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                        />
+                    </div>
+                </div>
+
+                {/* Text side */}
+                <div className={`w-full lg:w-2/5 flex flex-col ${isEven ? "lg:items-start lg:text-left" : "lg:items-end lg:text-right"}`}>
+                    <div className="font-mono text-xs text-emerald-400 mb-2">Featured Project</div>
+                    <h3 className="text-2xl md:text-3xl font-geist font-bold mb-6 text-zinc-100 group-hover:text-emerald-400 transition-colors">{project.title}</h3>
+                    <div className="glass p-6 rounded-xl border border-white/5 text-zinc-400 text-sm leading-relaxed mb-6 shadow-lg relative z-10 w-full group-hover:border-white/10 transition-colors">
+                        {project.description}
+                    </div>
+                    <ul className={`flex flex-wrap gap-2 mb-8 font-mono text-xs text-zinc-500 ${isEven ? "justify-start" : "justify-end"}`}>
+                        {project.tech.map((t: string) => (
+                            <li key={t} className="px-2 py-1 rounded bg-zinc-900/50 border border-white/5">{t}</li>
+                        ))}
+                    </ul>
+                    <div className={`flex items-center gap-4 ${isEven ? "justify-start" : "justify-end"}`}>
+                        <a href={project.github} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-emerald-400 transition-colors p-2 -m-2">
+                            <Github size={20} />
+                        </a>
+                        {project.live && (
+                            <a href={project.live} target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-emerald-400 transition-colors p-2 -m-2">
+                                <ExternalLink size={20} />
+                            </a>
+                        )}
+                    </div>
                 </div>
             </div>
-            <div className={`h-40 bg-gradient-to-br ${gradient} flex items-center justify-center`}>
-                <span className="text-5xl opacity-20 font-bold">{"</>"}</span>
+        </motion.div>
+    );
+}
+
+function GridProject({ project, index }: { project: any; index: number }) {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: "-50px" });
+
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: (index % 3) * 0.1 + 0.2 }}
+            className="group relative h-full glass rounded-xl p-6 border-t-2 border-t-transparent border-x border-b border-x-white/5 border-b-white/5 hover:border-t-emerald-500 hover:bg-zinc-900/50 transition-all duration-300 flex flex-col hover:-translate-y-1 hover:shadow-2xl shadow-black/50"
+        >
+            <div className="flex justify-between items-start mb-6">
+                <Folder size={32} className="text-emerald-400/80 group-hover:text-emerald-400 transition-colors" />
+                <div className="flex gap-3">
+                    <a href={project.github} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-emerald-400 transition-colors z-10">
+                        <Github size={18} />
+                    </a>
+                    {project.live && (
+                        <a href={project.live} target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-emerald-400 transition-colors z-10">
+                            <ExternalLink size={18} />
+                        </a>
+                    )}
+                </div>
             </div>
-        </div>
+            <h4 className="text-lg font-bold font-geist text-zinc-200 group-hover:text-emerald-400 transition-colors mb-2">{project.title}</h4>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-8 flex-grow">{project.description}</p>
+            <ul className="flex flex-wrap gap-x-4 gap-y-2 mt-auto font-mono text-[10px] text-zinc-500">
+                {project.tech.map((t: string) => (
+                    <li key={t}>{t}</li>
+                ))}
+            </ul>
+        </motion.div>
     );
 }
 
 export default function ProjectsSection() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const ref = useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
-    const dragX = useMotionValue(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
-
-    const prev = () => setActiveIndex((i) => Math.max(0, i - 1));
-    const next = () => setActiveIndex((i) => Math.min(featuredProjects.length - 1, i + 1));
-
     return (
-        <section id="projects" className="section-pad">
+        <section id="projects" className="section-pad w-full">
             <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    ref={ref}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    className="mb-16 text-center"
-                >
-                    <span className="font-mono text-sm text-violet-400 tracking-widest uppercase">Featured Work</span>
-                    <h2 className="mt-2 text-4xl md:text-5xl font-bold">
-                        My <span className="gradient-text">Projects</span>
+                {/* Section Header */}
+                <div className="mb-20">
+                    <span className="font-mono text-sm text-emerald-400 tracking-widest uppercase">My Work</span>
+                    <h2 className="mt-2 text-4xl md:text-5xl font-bold font-geist">
+                        Featured <span className="text-zinc-600">Projects</span>
                     </h2>
-                    <p className="mt-4 text-slate-500 max-w-xl mx-auto">
-                        Full-stack applications built with Java, Spring Boot, React, and secure authentication.
-                    </p>
-                </motion.div>
+                </div>
 
-                {/* Featured Carousel */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2 }}
-                    className="mb-20"
-                >
-                    <div className="relative overflow-hidden">
-                        <motion.div
-                            ref={carouselRef}
-                            drag="x"
-                            dragConstraints={{ left: -(featuredProjects.length - 1) * 100, right: 0 }}
-                            style={{ x: dragX }}
-                            animate={{ x: -activeIndex * 0 }}
-                            className="flex gap-6 pb-4"
-                        >
-                            {featuredProjects.map((project, i) => {
-                                const isActive = i === activeIndex;
-                                return (
-                                    <motion.div
-                                        key={project.name}
-                                        animate={{
-                                            scale: isActive ? 1 : 0.93,
-                                            opacity: isActive ? 1 : 0.5,
-                                        }}
-                                        transition={{ duration: 0.4 }}
-                                        className="glass rounded-2xl p-6 min-w-[min(100%,520px)] cursor-grab active:cursor-grabbing"
-                                        onClick={() => setActiveIndex(i)}
-                                    >
-                                        <BrowserFrame gradient={project.gradient} />
-                                        <div className="mt-5">
-                                            <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-                                            <p className="text-slate-400 text-sm leading-relaxed mb-4">{project.description}</p>
-                                            <div className="flex flex-wrap gap-2 mb-5">
-                                                {project.tech.map((t) => (
-                                                    <span key={t} className="px-2.5 py-1 rounded-lg text-xs font-mono bg-violet-500/10 text-violet-400 border border-violet-500/15">
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <div className="flex gap-3">
-                                                <a href={project.github} target="_blank" rel="noopener noreferrer"
-                                                    className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors">
-                                                    <RiGithubLine size={16} /> Code
-                                                </a>
-                                                {project.live && (
-                                                    <a href={project.live} target="_blank" rel="noopener noreferrer"
-                                                        className="flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors">
-                                                        <RiExternalLinkLine size={16} /> Live
-                                                    </a>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
-                        </motion.div>
-                    </div>
-
-                    {/* Controls */}
-                    <div className="flex items-center justify-between mt-6">
-                        <div className="flex gap-2">
-                            {featuredProjects.map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => setActiveIndex(i)}
-                                    className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-8 bg-violet-500" : "w-2 bg-white/15"
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                        <div className="flex gap-2">
-                            <button onClick={prev} disabled={activeIndex === 0}
-                                className="p-2 rounded-full glass hover:border-violet-500/30 disabled:opacity-30 transition-colors">
-                                <RiArrowLeftLine size={18} />
-                            </button>
-                            <button onClick={next} disabled={activeIndex === featuredProjects.length - 1}
-                                className="p-2 rounded-full glass hover:border-violet-500/30 disabled:opacity-30 transition-colors">
-                                <RiArrowRightLine size={18} />
-                            </button>
-                        </div>
-                    </div>
-                </motion.div>
+                {/* Featured Projects Stack */}
+                <div className="flex flex-col gap-24 md:gap-32 mb-32">
+                    {FEATURED_PROJECTS.map((project, i) => (
+                        <FeaturedProject key={project.title} project={project} index={i} />
+                    ))}
+                </div>
 
                 {/* Other Projects Grid */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.4 }}
-                >
-                    <h3 className="text-xl font-semibold text-slate-300 mb-6">Other Notable Projects</h3>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {otherProjects.map((project, i) => (
-                            <motion.div
-                                key={project.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: 0.1 * i + 0.5 }}
-                                whileHover={{ y: -8 }}
-                                className="glass rounded-xl p-5 cursor-pointer group relative overflow-hidden transition-shadow hover:shadow-xl hover:shadow-violet-900/20"
-                            >
-                                {/* Top gradient border on hover */}
-                                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-violet-500 to-cyan-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-
-                                <div className="flex justify-between items-start mb-4">
-                                    <HiFolderOpen className="text-violet-400 text-3xl" />
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer"
-                                        className="text-slate-500 hover:text-white transition-colors">
-                                        <RiGithubLine size={18} />
-                                    </a>
-                                </div>
-                                <h4 className="font-bold text-white text-base mb-2 group-hover:text-violet-300 transition-colors">{project.name}</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed mb-4">{project.description}</p>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {project.tech.map((t) => (
-                                        <span key={t} className="text-xs font-mono text-slate-600">{t}</span>
-                                    ))}
-                                </div>
-                            </motion.div>
+                <div className="mb-12">
+                    <h3 className="text-2xl font-bold font-geist text-center mb-12">Other Noteworthy Projects</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {OTHER_PROJECTS.map((project, i) => (
+                            <GridProject key={project.title} project={project} index={i} />
                         ))}
                     </div>
-                </motion.div>
+                </div>
+
+                <div className="text-center mt-12">
+                    <a href="https://github.com/manjeetsingh" className="inline-flex items-center gap-2 text-sm font-mono text-emerald-400 hover:underline underline-offset-4">
+                        View more on GitHub <ExternalLink size={14} />
+                    </a>
+                </div>
             </div>
         </section>
     );
