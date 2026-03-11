@@ -2,1082 +2,719 @@
 <html lang="en">
 
 <head>
-    <title>Manjeet Singh Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjeet Singh — Full-Stack Developer & Content Creator</title>
+    <meta name="description"
+        content="Portfolio of Manjeet Singh — Full-Stack Java & React Developer, YouTube Creator, and AI Enthusiast building innovative solutions.">
+    <meta name="keywords"
+        content="Manjeet Singh, Full-Stack Developer, Java, Spring Boot, React, YouTube, ScienceHindi360, BBS, AI">
+    <meta name="author" content="Manjeet Singh">
 
-    <!-- Font & Icons -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
 
-    <!-- Existing styles -->
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <style>
-        /*======================================
-    //--//-->  ABOUT
-    ======================================*/
-
-        .about-mf .box-shadow-full {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        .about-mf .about-img {
-            margin-bottom: 2rem;
-        }
-
-        .about-mf .about-img img {
-            margin-left: 10px;
-        }
-
-        #typing-animation {
-            position: relative;
-            font-size: 30px;
-            font-weight: bold;
-            color: rgb(255, 255, 255);
-            overflow: hidden;
-            white-space: nowrap;
-            min-height: 1.2em;
-            /* Add fixed height to prevent layout shift */
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1em;
-            background: #fff;
-            vertical-align: middle;
-            margin-left: 2px;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes fadeZoom {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .zoom-effect {
-            overflow: hidden;
-            transition: transform 0.3s ease-out;
-        }
-
-        .zoom-effect:hover {
-            transform: scale(1.1);
-        }
-
-        .about-profile-img {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 6px solid #ffc107;
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.5);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .about-profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-        }
-
-        .about-section .row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        @media (max-width: 768px) {
-            .about-section .row {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .about-profile-img {
-                margin: 0 auto;
-            }
-        }
-
-        .about-profile-img {
-            opacity: 0;
-            transform: scale(0.8);
-            animation: fadeZoom 0.8s ease forwards;
-            animation-delay: 0.2s;
-        }
-
-        /* Skill Cloud styles (if reused) */
-        .skill-cloud-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: #222;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-cloud-container .title-s {
-            width: 100%;
-            text-align: center;
-            color: #ffbd39;
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .skill-tag {
-            font-size: 1.2em;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 20px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-
-        .tag-1 {
-            background-color: #ffbd39;
-        }
-
-        .tag-2 {
-            background-color: #f96d00;
-        }
-
-        .tag-3 {
-            background-color: #d19a2e;
-        }
-
-        .tag-4 {
-            background-color: #ffc94d;
-        }
-
-        .tag-5 {
-            background-color: #ffa500;
-        }
-
-        .size-1 {
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-
-        .size-2 {
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-
-        .size-3 {
-            font-size: 1.2em;
-            font-weight: 500;
-        }
-
-        .size-4 {
-            font-size: 1.0em;
-            font-weight: 400;
-        }
-
-        .btn-linkedin-lg {
-            padding: 15px 30px;
-            font-size: 18px;
-        }
-
-        /* Technical skills section */
-        .skills-section {
-            background-color: #222;
-            padding: 60px 0;
-        }
-
-        .section-title {
-            color: #fff;
-            font-size: 2.5em;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #ffbd39;
-            margin: 10px auto 0;
-        }
-
-        .skill-categories {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .skill-category {
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            border: 1px solid #444;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .skill-category:hover {
-            background-color: #444;
-            border-color: #ffbd39;
-        }
-
-        .skill-category.active {
-            background-color: #ffbd39;
-            color: #000;
-            font-weight: 600;
-            border-color: #ffbd39;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 1200px) {
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .skill-card {
-            background-color: #333;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card:hover {
-            border-color: #ffbd39;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .skill-card .skill-icon {
-            font-size: 3.5em;
-            color: #ffbd39;
-            margin-bottom: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: scale(1.1);
-        }
-
-        .skill-card .skill-name {
-            color: #fff;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .skill-card .skill-description {
-            color: #ccc;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
-
-        .skill-level {
-            display: none;
-        }
-
-        .glow-box {
-            position: relative;
-            background-color: #333;
-            border: 1px solid #444;
-            box-shadow: 0 0 15px rgba(255, 189, 57, 0.1);
-        }
-
-        .glow-box::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ffbd39, #f96d00, #ffbd39);
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .glow-box:hover::before {
-            opacity: 0.5;
-        }
-
-        .glow-box::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #ffbd39, #f96d00, #ffbd39);
-            z-index: -1;
-            filter: blur(10px);
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .glow-box:hover::after {
-            opacity: 0.8;
-        }
-
-        /* Text override for contrast */
-        .ftco-animate .text h1,
-        .ftco-animate .text h2 {
-            color: #fff !important;
-        }
-
-        .ftco-about .heading-section h2 {
-            color: #fff !important;
-        }
-
-        .ftco-about .heading-section p {
-            color: #ccc !important;
-        }
-
-        .ftco-animate h2 {
-            color: #fff !important;
-        }
-
-        .ftco-animate span,
-        .ftco-animate .subheading {
-            color: #ffbd39 !important;
-        }
-    </style>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style-v2.css">
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html">Manjeet Singh</a>
-            <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse"
-                data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav nav ml-auto">
-                    <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-                    <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-                    <li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
-                    <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-                    <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-                    <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-                </ul>
+            <a href="#hero" class="nav-logo">M<span>.</span>Singh</a>
+            <div class="nav-links" id="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#youtube">YouTube</a>
+                <a href="#ai-tools">AI Tools</a>
+                <a href="#experience">Journey</a>
+                <a href="#contact">Contact</a>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="home-section" class="hero">
-        <div class="home-slider owl-carousel">
-            <div class="slider-item ">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end"
-                        data-scrollax-parent="true">
-                        <div class="one-third js-fullheight order-md-last img"
-                            style="background-image:url(images/bg3.jpg);">
-                            <div class="overlay"></div>
-                        </div>
-                        <div class="one-forth d-flex align-items-center ftco-animate"
-                            data-scrollax=" properties: { translateY: '70%' }">
-                            <div class="text">
-                                <span class="subheading">Hello!</span>
-                                <h1 class="mb-4 mt-3">I'm <span>Manjeet Singh</span></h1>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
 
-                                <div style="display:flex; align-items:center; gap:6px; height: 1.2em;">
-                                    <span id="typing-animation"></span>
-                                    <span class="typing-cursor"></span>
-                                </div>
-
-                                <script>
-                                    (function manageTyping_MJS() {
-                                        const el = document.getElementById("typing-animation");
-                                        const texts = ['Full-Stack Developer', 'Java + SpringBoot', 'React & JWT Auth'];
-                                        let textIndex = 0, charIndex = 0, forward = true;
-
-                                        function type() {
-                                            const currentText = texts[textIndex];
-
-                                            if (forward) {
-                                                // Typing forward (slower speed - increased from 100 to 150)
-                                                el.textContent = currentText.substring(0, charIndex + 1);
-                                                charIndex++;
-
-                                                if (charIndex === currentText.length) {
-                                                    forward = false;
-                                                    setTimeout(type, 1000); // Increased pause at end of word from 800 to 1000
-                                                } else {
-                                                    setTimeout(type, 150); // Increased from 100 to 150
-                                                }
-                                            } else {
-                                                // Deleting (slower speed - increased from 40 to 60)
-                                                el.textContent = currentText.substring(0, charIndex - 1);
-                                                charIndex--;
-
-                                                if (charIndex === 0) {
-                                                    forward = true;
-                                                    textIndex = (textIndex + 1) % texts.length;
-                                                    setTimeout(type, 500); // Increased pause between phrases from 300 to 500
-                                                } else {
-                                                    setTimeout(type, 60); // Increased from 40 to 60
-                                                }
-                                            }
-                                        }
-
-                                        // Start the typing effect
-                                        setTimeout(type, 500); // Initial delay remains the same
-                                    })();                                </script>
-
-                                <br><br>
-                                <h2>Full-Stack Java & React Developer</h2>
-                                <p>
-                                    <a href="https://github.com/ManjeetAulakh"
-                                        class="btn btn-primary py-3 px-4">GitHub</a>
-                                    <a href="#" class="btn btn-white btn-outline-white py-3 px-4">My works</a>
-                                </p>
-                            </div>
-                        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge reveal">
+                    <span class="pulse-dot"></span> Available for opportunities
+                </div>
+                <h1 class="hero-name split-text">Manjeet Singh</h1>
+                <div class="hero-typed-wrapper reveal reveal-delay-2">
+                    <span class="prefix">&gt;&nbsp;</span>
+                    <span id="typed-text"></span><span class="typed-cursor"></span>
+                </div>
+                <p class="hero-bio reveal reveal-delay-3">
+                    A passionate Full-Stack Developer & YouTube Creator crafting robust web applications with
+                    <strong>Java</strong>, <strong>Spring Boot</strong>, and <strong>React</strong> — while building
+                    space science content reaching thousands of curious minds.
+                </p>
+                <div class="hero-buttons reveal reveal-delay-4">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Explore My Work
+                    </a>
+                    <a href="https://github.com/ManjeetAulakh" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-outline">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual reveal reveal-delay-1">
+                <div class="hero-avatar-wrapper">
+                    <div class="hero-orbit">
+                        <span class="orbit-dot"></span>
+                        <span class="orbit-dot"></span>
+                        <span class="orbit-dot"></span>
                     </div>
+                    <img src="images/bg4.JPG" alt="Manjeet Singh" class="hero-avatar">
+                    <div class="float-badge"><i class="fab fa-java"></i> Java</div>
+                    <div class="float-badge"><i class="fab fa-react"></i> React</div>
+                    <div class="float-badge"><i class="fab fa-youtube"></i> Creator</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    <!-- ========== INFINITE MARQUEE ========== -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item"><i class="fab fa-java"></i> Java</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-leaf"></i> Spring Boot</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-react"></i> React</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-docker"></i> Docker</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-aws"></i> AWS</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-shield-halved"></i> Spring Security</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-robot"></i> AI Tools</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-youtube"></i> YouTube</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-code-branch"></i> CI/CD</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
+            <span class="marquee-divider"></span>
+            <!-- Duplicate for seamless loop -->
+            <span class="marquee-item"><i class="fab fa-java"></i> Java</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-leaf"></i> Spring Boot</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-react"></i> React</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-docker"></i> Docker</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-aws"></i> AWS</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-shield-halved"></i> Spring Security</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-robot"></i> AI Tools</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-youtube"></i> YouTube</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fas fa-code-branch"></i> CI/CD</span>
+            <span class="marquee-divider"></span>
+            <span class="marquee-item"><i class="fab fa-git-alt"></i> Git</span>
+            <span class="marquee-divider"></span>
+        </div>
+    </div>
+
+    <!-- ========== ABOUT — BENTO GRID ========== -->
+    <section class="about" id="about">
         <div class="container">
-            <div class="row">
-                <div class="row d-flex align-items-stretch">
-                    <div class="col-md-6 col-lg-5 d-flex">
-                        <div class="img-about img d-flex align-items-stretch">
-                            <div class="overlay">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 text-center">
-                                        <div class="about-img">
-                                            <img src="images/bg4.JPG" class="about-profile-img" alt="Manjeet Singh">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-12 text-center">
-                                        <div class="about-info" style="margin-top: 20px;">
-                                            <p><span class="title-s">Name: </span> <span>Manjeet Singh</span></p>
-                                            <p><span class="title-s">Job Role: </span> <span>Full-Stack Developer</span>
-                                            </p>
-                                            <p><span class="title-s">Address: </span> <span>Jalandhar, India</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="section-header">
+                <span class="section-label reveal">Who I Am</span>
+                <h2 class="section-title reveal reveal-delay-1">About <span class="gradient-text">Me</span></h2>
+            </div>
 
-                    <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-                        <div class="row justify-content-start pb-3">
-                            <div class="col-md-12 heading-section ftco-animate">
-                                <h1 class="big">About</h1>
-                                <h2 class="mb-4">My Journey</h2>
-                                <p>I am a passionate Full-Stack Developer with a focus on building robust and scalable
-                                    web applications. My journey began with a deep curiosity for how technology works,
-                                    which led me to master Java and the Spring Boot framework for back-end development.
-                                    I enjoy tackling challenges in secure authentication, designing efficient REST APIs,
-                                    and building intuitive user interfaces with React. My projects, such as the Quiz
-                                    Management System and Smart Contact Manager, are a testament to my commitment to
-                                    creating practical, user-centric solutions. I am constantly learning and exploring
-                                    new technologies, from AI concepts to modern CI/CD pipelines, to stay at the
-                                    forefront of innovation.</p>
-                            </div>
-                        </div>
+            <div class="bento-grid">
+                <div class="bento-card bento-photo reveal">
+                    <img src="images/bg3.jpg" alt="Manjeet Singh">
+                </div>
 
-                        <div class="counter-wrap ftco-animate d-flex mt-md-3">
-                            <div class="text">
-                                <p class="mb-4">
-                                    <span class="number" data-number="5">0</span> <span>+</span>
-                                    <span>&nbsp; Projects completed</span>
-                                </p>
-                                <p><a href="https://www.linkedin.com/in/manjeetsingh0"
-                                        class="btn btn-primary py-4 px-5 btn-linkedin-lg">LinkedIn</a></p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bento-card bento-bio reveal reveal-delay-1">
+                    <h3>🚀 My Story</h3>
+                    <p class="bio-text">
+                        I'm a <strong>Full-Stack Developer</strong> and <strong>YouTube Content Creator</strong>
+                        with a deep passion for technology and space science. My development journey spans from building
+                        secure REST APIs with <strong>Spring Boot</strong> to crafting sleek interfaces with
+                        <strong>React</strong>.
+                        <br><br>
+                        Beyond code, I run two YouTube channels — <strong>ScienceHindi360</strong> and
+                        <strong>Beyond Belief Space (BBS)</strong> — where I combine my love for storytelling,
+                        AI-powered content creation, and astrophysics to educate thousands of viewers across languages.
+                    </p>
+                </div>
+
+                <div class="bento-card bento-stat bento-stat-1 reveal reveal-delay-2">
+                    <div class="stat-num" data-count="5" data-suffix="+">0+</div>
+                    <div class="stat-label">Projects Built</div>
+                </div>
+
+                <div class="bento-card bento-stat bento-stat-2 reveal reveal-delay-3">
+                    <div class="stat-num" data-count="2" data-suffix="">0</div>
+                    <div class="stat-label">YouTube Channels</div>
+                </div>
+
+                <div class="bento-card bento-quote reveal reveal-delay-4">
+                    <span class="quote-mark">&ldquo;</span>
+                    <p>I believe in building things that are both <strong>technically sound</strong> and
+                        <strong>visually stunning</strong> — whether it's a web app or a YouTube video about black
+                        holes.
+                    </p>
+                </div>
+
+                <div class="bento-card bento-links reveal reveal-delay-5">
+                    <a href="https://www.linkedin.com/in/manjeetsingh0" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="#contact" class="btn btn-outline">
+                        <i class="fas fa-paper-plane"></i> Reach Out
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills -->
-    <section id="skills-section" class="skills-section">
+    <!-- ========== SKILLS ========== -->
+    <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-header">
+                <span class="section-label reveal">Tech Arsenal</span>
+                <h2 class="section-title reveal reveal-delay-1">Technical <span class="gradient-text">Skills</span></h2>
+                <p class="section-desc reveal reveal-delay-2">Technologies I use to bring products to life — hover over
+                    the
+                    cards.</p>
+            </div>
 
-            <div class="skill-categories">
-                <div class="skill-category active" data-filter="all">All Skills</div>
-                <div class="skill-category" data-filter="backend">Backend</div>
-                <div class="skill-category" data-filter="frontend">Frontend</div>
-                <div class="skill-category" data-filter="devops">DevOps</div>
-                <div class="skill-category" data-filter="database">Database</div>
-                <div class="skill-category" data-filter="tools">Tools</div>
+            <div class="skill-filters reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="backend">Backend</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="devops">DevOps</button>
+                <button class="filter-btn" data-filter="database">Database</button>
+                <button class="filter-btn" data-filter="tools">Tools</button>
             </div>
 
             <div class="skills-grid">
-                <!-- Backend Skills -->
-                <div class="skill-card glow-box" data-category="backend">
+                <div class="skill-card reveal" data-category="backend">
                     <div class="skill-icon"><i class="fab fa-java"></i></div>
                     <h3 class="skill-name">Java</h3>
-                    <p class="skill-description">
-                        Core Java, Collections, Multithreading, Stream API, JVM Internals
-                    </p>
+                    <p class="skill-desc">Core Java, Collections, Multithreading, Stream API, JVM Internals</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="backend">
+                <div class="skill-card reveal reveal-delay-1" data-category="backend">
                     <div class="skill-icon"><i class="fas fa-leaf"></i></div>
                     <h3 class="skill-name">Spring Boot</h3>
-                    <p class="skill-description">
-                        Spring MVC, Security, Data JPA, REST APIs, Microservices
-                    </p>
+                    <p class="skill-desc">Spring MVC, Security, Data JPA, REST APIs, Microservices</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="backend">
-                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <div class="skill-card reveal reveal-delay-2" data-category="backend">
+                    <div class="skill-icon"><i class="fas fa-shield-halved"></i></div>
                     <h3 class="skill-name">Spring Security</h3>
-                    <p class="skill-description">
-                        JWT Authentication, OAuth2, Role-based Authorization
-                    </p>
+                    <p class="skill-desc">JWT Authentication, OAuth2, Role-based Authorization</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="backend">
+                <div class="skill-card reveal reveal-delay-3" data-category="backend">
                     <div class="skill-icon"><i class="fas fa-code"></i></div>
                     <h3 class="skill-name">Hibernate</h3>
-                    <p class="skill-description">
-                        ORM, JPA, Entity Relationships, Query Optimization
-                    </p>
+                    <p class="skill-desc">ORM, JPA, Entity Relationships, Query Optimization</p>
                 </div>
 
-                <!-- Frontend Skills -->
-                <div class="skill-card glow-box" data-category="frontend">
+                <div class="skill-card reveal" data-category="frontend">
                     <div class="skill-icon"><i class="fab fa-react"></i></div>
                     <h3 class="skill-name">React.js</h3>
-                    <p class="skill-description">
-                        Hooks, Context API, Redux, React Router, Component Lifecycle
-                    </p>
+                    <p class="skill-desc">Hooks, Context API, Redux, React Router</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="frontend">
+                <div class="skill-card reveal reveal-delay-1" data-category="frontend">
                     <div class="skill-icon"><i class="fab fa-js"></i></div>
                     <h3 class="skill-name">JavaScript</h3>
-                    <p class="skill-description">
-                        ES6+, Async/Await, DOM Manipulation, Fetch API
-                    </p>
+                    <p class="skill-desc">ES6+, Async/Await, DOM, Fetch API</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="frontend">
+                <div class="skill-card reveal reveal-delay-2" data-category="frontend">
                     <div class="skill-icon"><i class="fab fa-html5"></i></div>
                     <h3 class="skill-name">HTML5</h3>
-                    <p class="skill-description">
-                        Semantic HTML, Accessibility, Web Components
-                    </p>
+                    <p class="skill-desc">Semantic HTML, Accessibility, Web Standards</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="frontend">
+                <div class="skill-card reveal reveal-delay-3" data-category="frontend">
                     <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
                     <h3 class="skill-name">CSS3</h3>
-                    <p class="skill-description">
-                        Flexbox, Grid, Animations, Responsive Design
-                    </p>
+                    <p class="skill-desc">Flexbox, Grid, Animations, Responsive Design</p>
                 </div>
 
-                <!-- DevOps Skills -->
-                <div class="skill-card glow-box" data-category="devops">
+                <div class="skill-card reveal" data-category="devops">
                     <div class="skill-icon"><i class="fab fa-docker"></i></div>
                     <h3 class="skill-name">Docker</h3>
-                    <p class="skill-description">
-                        Containerization, Docker Compose, Image Optimization
-                    </p>
+                    <p class="skill-desc">Containerization, Docker Compose, Optimization</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="devops">
+                <div class="skill-card reveal reveal-delay-1" data-category="devops">
                     <div class="skill-icon"><i class="fab fa-aws"></i></div>
                     <h3 class="skill-name">AWS</h3>
-                    <p class="skill-description">
-                        EC2, S3, RDS, Lambda, IAM, CloudFormation
-                    </p>
+                    <p class="skill-desc">EC2, S3, RDS, Lambda, IAM</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="devops">
+                <div class="skill-card reveal reveal-delay-2" data-category="devops">
                     <div class="skill-icon"><i class="fas fa-code-branch"></i></div>
                     <h3 class="skill-name">CI/CD</h3>
-                    <p class="skill-description">
-                        GitHub Actions, Jenkins, Automated Testing
-                    </p>
+                    <p class="skill-desc">GitHub Actions, Jenkins, Automated Pipelines</p>
                 </div>
 
-                <!-- Database Skills -->
-                <div class="skill-card glow-box" data-category="database">
+                <div class="skill-card reveal" data-category="database">
                     <div class="skill-icon"><i class="fas fa-database"></i></div>
                     <h3 class="skill-name">SQL</h3>
-                    <p class="skill-description">
-                        PostgreSQL, MySQL, Query Optimization, Indexing
-                    </p>
+                    <p class="skill-desc">PostgreSQL, MySQL, Query Optimization, Indexing</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="database">
+                <div class="skill-card reveal reveal-delay-1" data-category="database">
                     <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
                     <h3 class="skill-name">System Design</h3>
-                    <p class="skill-description">
-                        Scalability, Load Balancing, Caching, Database Sharding
-                    </p>
+                    <p class="skill-desc">Scalability, Caching, Load Balancing, Sharding</p>
                 </div>
 
-                <!-- Tools -->
-                <div class="skill-card glow-box" data-category="tools">
+                <div class="skill-card reveal" data-category="tools">
                     <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
                     <h3 class="skill-name">Git</h3>
-                    <p class="skill-description">
-                        Version Control, Branching Strategies, GitHub/GitLab
-                    </p>
+                    <p class="skill-desc">Version Control, Branching, GitHub/GitLab</p>
                 </div>
-
-                <div class="skill-card glow-box" data-category="tools">
+                <div class="skill-card reveal reveal-delay-1" data-category="tools">
                     <div class="skill-icon"><i class="fas fa-terminal"></i></div>
                     <h3 class="skill-name">Linux</h3>
-                    <p class="skill-description">
-                        Bash Scripting, Server Management, SSH
-                    </p>
+                    <p class="skill-desc">Bash Scripting, Server Management, SSH</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Resume -->
-    <section class="ftco-section ftco-no-pb" id="resume-section">
+    <!-- ========== PROJECTS ========== -->
+    <section class="projects" id="projects">
         <div class="container">
-            <div class="row justify-content-center pb-5">
-                <div class="col-md-10 heading-section text-center ftco-animate">
-                    <h1 class="big big-2">Resume</h1>
-                    <h2 class="mb-4">Resume</h2>
-                    <p>Full-stack Java & React developer building real-world applications with Spring Boot, secure
-                        authentication, and modern frontend state management. Focused on clean architecture, JWT/OAuth2
-                        security, and deployment pipelines.</p>
-                </div>
+            <div class="section-header">
+                <span class="section-label reveal">Featured Work</span>
+                <h2 class="section-title reveal reveal-delay-1">My <span class="gradient-text">Projects</span></h2>
+                <p class="section-desc reveal reveal-delay-2">Full-stack applications built with Java, Spring Boot,
+                    React, and
+                    secure authentication.</p>
             </div>
 
-            <div class="row">
-                <h1 class="big-4">Experience</h1>
-                <div class="underline"></div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2025-Present</span>
-                        <h2>Full-Stack Developer</h2>
-                        <span class="position">Personal Projects / Freelance</span>
-                        <p class="mt-4">
-                        <ul>
-                            <li>Built a Quiz Management System with Spring Boot backend and React frontend, JWT-based
-                                auth, and attempt tracking.</li>
-                            <li>Developed a Smart Contact Manager with OAuth2 login (Google/GitHub), profile management,
-                                and responsive UI using Thymeleaf.</li>
-                            <li>Implemented secure RESTful APIs, role-based access, and integrated PostgreSQL with
-                                JPA/Hibernate.</li>
-                        </ul>
-                        </p>
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="images/proj_1.jpg" alt="Quiz Management System">
+                        <div class="project-overlay">
+                            <a href="https://github.com/ManjeetAulakh/quiz" target="_blank" rel="noopener noreferrer"
+                                class="btn-sm">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
                     </div>
-
+                    <div class="project-info">
+                        <h3>Quiz Management System</h3>
+                        <p>Full-stack quiz platform with Spring Boot + React. JWT authentication, question creation,
+                            timed
+                            attempts, and result analytics dashboard.</p>
+                        <div class="project-tags">
+                            <span>Spring Boot</span><span>React</span><span>JWT</span><span>PostgreSQL</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2024-2025</span>
-                        <h2>Developer</h2>
-                        <span class="position">Side Projects</span>
-                        <p class="mt-4">
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-image">
+                        <img src="images/proj_2.jpg" alt="Smart Contact Manager">
+                        <div class="project-overlay">
+                            <a href="https://github.com/ManjeetAulakh/contactManager" target="_blank"
+                                rel="noopener noreferrer" class="btn-sm">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Smart Contact Manager</h3>
+                        <p>Secure contact app with OAuth2 login (Google & GitHub), profile saving, responsive UI, and
+                            smart
+                            search/filtering.</p>
+                        <div class="project-tags">
+                            <span>Spring Boot</span><span>OAuth2</span><span>Thymeleaf</span><span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-image">
+                        <img src="images/proj_3.jpg" alt="Tech Blog Platform">
+                        <div class="project-overlay">
+                            <a href="https://github.com/ManjeetAulakh/techblog-backend" target="_blank"
+                                rel="noopener noreferrer" class="btn-sm">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Tech Blog Platform</h3>
+                        <p>Full-stack blogging platform with user roles, rich content creation, comment system, and
+                            JWT-protected
+                            endpoints.</p>
+                        <div class="project-tags">
+                            <span>Spring Boot</span><span>React</span><span>JWT</span><span>Hibernate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== YOUTUBE CHANNELS ========== -->
+    <section class="youtube" id="youtube">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal">Content Creation</span>
+                <h2 class="section-title reveal reveal-delay-1">YouTube <span class="gradient-text-warm">Channels</span>
+                </h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    Beyond coding, I'm passionate about space science education — reaching audiences in both Hindi and
+                    English.
+                </p>
+            </div>
+
+            <div class="youtube-grid">
+                <!-- ScienceHindi360 -->
+                <div class="channel-card reveal">
+                    <div class="channel-banner">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80"
+                            alt="ScienceHindi360 Banner">
+                        <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=100&h=100&fit=crop&crop=face&q=80"
+                            alt="ScienceHindi360" class="channel-avatar">
+                    </div>
+                    <div class="channel-body">
+                        <h3 class="channel-name">ScienceHindi360</h3>
+                        <p class="channel-handle">@ScienceHindi360</p>
+                        <p class="channel-desc">
+                            Making space science accessible in Hindi. From black holes to Mars missions,
+                            I break down complex astrophysics into engaging, visual stories using AI-powered
+                            animations and voiceover.
+                        </p>
+                        <div class="channel-stats">
+                            <div class="ch-stat">
+                                <div class="ch-num">Growing</div>
+                                <div class="ch-label">Subscribers</div>
+                            </div>
+                            <div class="ch-stat">
+                                <div class="ch-num">Hindi</div>
+                                <div class="ch-label">Language</div>
+                            </div>
+                            <div class="ch-stat">
+                                <div class="ch-num">Space</div>
+                                <div class="ch-label">Niche</div>
+                            </div>
+                        </div>
+                        <div class="channel-tags">
+                            <span class="tag-hindi">🇮🇳 Hindi</span>
+                            <span class="tag-space">🔭 Space Science</span>
+                            <span class="tag-ai">🤖 AI-Powered</span>
+                        </div>
+                        <a href="#" class="channel-yt-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube"></i> Visit Channel
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Beyond Belief Space (BBS) -->
+                <div class="channel-card reveal reveal-delay-1">
+                    <div class="channel-banner">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80"
+                            alt="Beyond Belief Space Banner">
+                        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=100&h=100&fit=crop&crop=center&q=80"
+                            alt="BBS" class="channel-avatar">
+                    </div>
+                    <div class="channel-body">
+                        <h3 class="channel-name">Beyond Belief Space</h3>
+                        <p class="channel-handle">@BBS · English</p>
+                        <p class="channel-desc">
+                            Exploring the universe in English for a global audience. Deep dives into
+                            cosmology, satellite technology, and cutting-edge space discoveries —
+                            produced with AI-driven editing and visual effects.
+                        </p>
+                        <div class="channel-stats">
+                            <div class="ch-stat">
+                                <div class="ch-num">Growing</div>
+                                <div class="ch-label">Subscribers</div>
+                            </div>
+                            <div class="ch-stat">
+                                <div class="ch-num">English</div>
+                                <div class="ch-label">Language</div>
+                            </div>
+                            <div class="ch-stat">
+                                <div class="ch-num">Global</div>
+                                <div class="ch-label">Reach</div>
+                            </div>
+                        </div>
+                        <div class="channel-tags">
+                            <span class="tag-english">🌍 English</span>
+                            <span class="tag-space">🚀 Cosmology</span>
+                            <span class="tag-ai">🤖 AI-Edited</span>
+                        </div>
+                        <a href="#" class="channel-yt-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube"></i> Visit Channel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== AI & CONTENT CREATION ========== -->
+    <section class="ai-section" id="ai-tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal">AI-Powered Workflow</span>
+                <h2 class="section-title reveal reveal-delay-1">AI Tools & <span class="gradient-text-fresh">Content
+                        Creation</span></h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    I leverage cutting-edge AI tools to supercharge my YouTube content pipeline — from scriptwriting to
+                    visual effects.
+                </p>
+            </div>
+
+            <div class="ai-grid">
+                <div class="ai-content">
+                    <p class="section-desc reveal" style="max-width:100%; margin-bottom: 28px;">
+                        My content workflow is <strong>AI-first</strong>. I use generative AI tools to write scripts,
+                        create stunning visuals, generate voiceovers, and edit videos — allowing me to produce
+                        high-quality content at scale while growing two channels simultaneously.
+                    </p>
+
+                    <div class="ai-tools-list">
+                        <div class="ai-tool-item reveal">
+                            <div class="ai-tool-icon icon-gpt"><i class="fas fa-brain"></i></div>
+                            <div class="ai-tool-info">
+                                <h4>ChatGPT / AI Assistants</h4>
+                                <p>Script writing, research, SEO optimization, content ideation</p>
+                            </div>
+                        </div>
+                        <div class="ai-tool-item reveal reveal-delay-1">
+                            <div class="ai-tool-icon icon-midjourney"><i class="fas fa-image"></i></div>
+                            <div class="ai-tool-info">
+                                <h4>MidJourney / DALL·E</h4>
+                                <p>Thumbnail generation, space visuals, concept art</p>
+                            </div>
+                        </div>
+                        <div class="ai-tool-item reveal reveal-delay-2">
+                            <div class="ai-tool-icon icon-runway"><i class="fas fa-film"></i></div>
+                            <div class="ai-tool-info">
+                                <h4>Runway / AI Video Tools</h4>
+                                <p>Video editing, motion effects, background removal</p>
+                            </div>
+                        </div>
+                        <div class="ai-tool-item reveal reveal-delay-3">
+                            <div class="ai-tool-icon icon-canva"><i class="fas fa-palette"></i></div>
+                            <div class="ai-tool-info">
+                                <h4>Canva + AI Design</h4>
+                                <p>Thumbnail design, channel branding, social media assets</p>
+                            </div>
+                        </div>
+                        <div class="ai-tool-item reveal reveal-delay-4">
+                            <div class="ai-tool-icon icon-eleven"><i class="fas fa-microphone"></i></div>
+                            <div class="ai-tool-info">
+                                <h4>ElevenLabs / AI Voice</h4>
+                                <p>Voiceover generation, multilingual narration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-visual reveal reveal-delay-2">
+                    <div class="orbit-container">
+                        <div class="orbit-center">AI<br>Hub</div>
+                        <div class="orbit-ring orbit-ring-1">
+                            <span class="orbit-node" style="top:-24px; left:50%; margin-left:-24px;"><i
+                                    class="fas fa-brain"></i></span>
+                            <span class="orbit-node" style="bottom:-24px; left:50%; margin-left:-24px;"><i
+                                    class="fas fa-image"></i></span>
+                            <span class="orbit-node" style="top:50%; right:-24px; margin-top:-24px;"><i
+                                    class="fas fa-film"></i></span>
+                        </div>
+                        <div class="orbit-ring orbit-ring-2">
+                            <span class="orbit-node" style="top:-24px; left:50%; margin-left:-24px;"><i
+                                    class="fas fa-palette"></i></span>
+                            <span class="orbit-node" style="top:50%; left:-24px; margin-top:-24px;"><i
+                                    class="fas fa-microphone"></i></span>
+                            <span class="orbit-node" style="bottom:-24px; right:20%; margin-bottom:-24px;"><i
+                                    class="fab fa-youtube"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE & EDUCATION ========== -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal">My Journey</span>
+                <h2 class="section-title reveal reveal-delay-1">Experience & <span
+                        class="gradient-text">Education</span></h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-group-label reveal"><i class="fas fa-briefcase"></i> Experience</div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">2025 — Present</span>
+                        <h3>Full-Stack Developer</h3>
+                        <div class="org">Personal Projects / Freelance</div>
                         <ul>
-                            <li>Added JWT authentication and React Context for state management in frontend apps.</li>
-                            <li>Containerized services with Docker for consistent local development.</li>
-                            <li>Improved frontend UX with dynamic data fetching and error handling using proper API
-                                integration.</li>
-                            <li>Wrote unit and integration tests using JUnit and Mockito to ensure backend reliability.
+                            <li>Built Quiz Management System with Spring Boot + React, JWT auth, and attempt tracking.
                             </li>
+                            <li>Developed Smart Contact Manager with OAuth2 (Google/GitHub), Thymeleaf UI.</li>
+                            <li>Implemented secure REST APIs, role-based access, PostgreSQL with JPA/Hibernate.</li>
                         </ul>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-
-            <br><br>
-
-            <div class="row">
-                <h1 class="big-4">Education</h1>
-                <div class="underline"></div>
-            </div>
-            <br>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2022-2026</span>
-                        <h2>Bachelor of Engineering</h2>
-                        <span class="position">Lovely Professional University</span>
-                        <p class="mt-4">CGPA: 7.8 / 10</p>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="resume-wrap ftco-animate">
-                        <span class="date">2020-2021</span>
-                        <h2>Higher Secondary School</h2>
-                        <span class="position">Mother India Convent School</span>
-                        <p class="mt-4">Grade: 70%</p>
+                <div class="timeline-item reveal reveal-delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">2024 — 2025</span>
+                        <h3>Developer & Content Creator</h3>
+                        <div class="org">Side Projects + YouTube</div>
+                        <ul>
+                            <li>Launched ScienceHindi360 and Beyond Belief Space YouTube channels.</li>
+                            <li>Containerized services with Docker; improved frontend UX.</li>
+                            <li>Wrote unit/integration tests with JUnit and Mockito.</li>
+                            <li>Built AI-powered content pipeline for video production.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6 text-center ftco-animate">
-                    <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+                <div class="timeline-group-label reveal" style="margin-top: 48px;">
+                    <i class="fas fa-graduation-cap"></i> Education
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Projects -->
-    <section class="ftco-section" id="project-section">
-        <div class="container">
-            <div class="row justify-content-center mb-5 pb-5">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h1 class="big big-2">Projects</h1>
-                    <h2 class="mb-4">Projects</h2>
-                    <p>Sample full-stack projects built with Java, Spring Boot, React, and secure authentication.</p>
-                </div>
-            </div>
-            <div class="row d-flex">
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry justify-content-end">
-                        <a href="https://github.com/ManjeetAulakh/quiz" class="block-20 zoom-effect"
-                            style="background-image: url('images/proj_1.jpg');">
-                        </a>
-                        <div class="text mt-3 float-right d-block">
-                            <h3 class="heading"><a href="https://github.com/ManjeetAulakh/quiz">Quiz Management
-                                    System</a></h3>
-                            <p>Spring Boot backend with React frontend, JWT auth, question creation, timed attempts, and
-                                result analytics.</p>
-                        </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">2022 — 2026</span>
+                        <h3>Bachelor of Engineering</h3>
+                        <div class="org">Lovely Professional University</div>
+                        <span class="grade"><i class="fas fa-star"></i> CGPA: 7.8 / 10</span>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry justify-content-end">
-                        <a href="https://github.com/ManjeetAulakh/contactManager" class="block-20 zoom-effect"
-                            style="background-image: url('images/proj_2.jpg');">
-                        </a>
-                        <div class="text mt-3 float-right d-block">
-                            <h3 class="heading"><a href="https://github.com/ManjeetAulakh/contactManager">Smart Contact
-                                    Manager</a></h3>
-                            <p>OAuth2 login, profile saving, responsive UI with Thymeleaf, and smart search/filtering
-                                features.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry">
-                        <a href="https://github.com/ManjeetAulakh/techblog-backend" class="block-20 zoom-effect"
-                            style="background-image: url('images/proj_3.jpg');">
-                        </a>
-                        <div class="text mt-3 float-right d-block">
-                            <h3 class="heading"><a href="https://github.com/ManjeetAulakh/techblog-backend">Tech Blog
-                                    Platform</a></h3>
-                            <p>Full-stack blog platform with user roles, content creation, and JWT-protected endpoints.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-        </div>
-    </section>
 
-    <!-- Counters and Callout -->
-    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-        <div class="container">
-            <div class="row d-md-flex align-items-center">
-                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18">
-                        <div class="text">
-                            <strong class="number" data-number="5">0</strong>
-                            <span>Achievements</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18">
-                        <div class="text">
-                            <strong class="number" data-number="8">0</strong>
-                            <span>Projects</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18">
-                        <div class="text">
-                            <strong class="number" data-number="200">0</strong>
-                            <span>Hours Coding</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-                    <div class="block-18">
-                        <div class="text">
-                            <strong class="number" data-number="100">0</strong>
-                            <span>Commits</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-            <div class="row justify-content-center">
-                <div class="col-md-7 ftco-animate text-center">
-                    <h2>More projects on<span> Github </span> </h2>
-                    <div class="heading">
-                        <h4>I build full-stack tools and developer utilities.</h4>
-                        <br>
-                        <p><a href="https://github.com/ManjeetAulakh" class="btn btn-primary py-3 px-5">GitHub</a></p>
+                <div class="timeline-item reveal reveal-delay-1">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">2020 — 2021</span>
+                        <h3>Higher Secondary School</h3>
+                        <div class="org">Mother India Convent School</div>
+                        <span class="grade"><i class="fas fa-star"></i> Grade: 70%</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+    <!-- ========== CONTACT ========== -->
+    <section class="contact" id="contact">
         <div class="container">
-            <div class="row justify-content-center mb-5 pb-3">
-                <div class="col-md-7 heading-section text-center ftco-animate">
-                    <h1 class="big big-2">Contact</h1>
-                    <h2 class="mb-4">Contact Me</h2>
-                    <p>Below are the details to reach out to me!</p>
+            <div class="section-header">
+                <span class="section-label reveal">Let's Connect</span>
+                <h2 class="section-title reveal reveal-delay-1">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="section-desc reveal reveal-delay-2">
+                    Open to discussing projects, collaborations, or just geeking out about space science and code.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card reveal">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h4>Location</h4>
+                    <p>Jalandhar, Punjab, India</p>
+                </div>
+                <div class="contact-card reveal reveal-delay-1">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <h4>Phone</h4>
+                    <p><a href="tel:+917056440985">+91 70564 40985</a></p>
+                </div>
+                <div class="contact-card reveal reveal-delay-2">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <h4>Email</h4>
+                    <p><a href="mailto:manjeetsingh.codes@gmail.com">manjeetsingh.codes@gmail.com</a></p>
+                </div>
+                <div class="contact-card reveal reveal-delay-3">
+                    <div class="contact-icon"><i class="fas fa-comment-dots"></i></div>
+                    <h4>Questions?</h4>
+                    <p><a href="https://forms.gle/uLaTShUKXraAvHJ77" target="_blank" rel="noopener noreferrer">Send a
+                            Message</a></p>
                 </div>
             </div>
 
-            <div class="row d-flex contact-info mb-5">
-                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-map-signs"></span>
-                        </div>
-                        <h3 class="mb-4">Address</h3>
-                        <p>Jalandhar, Punjab</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-phone2"></span>
-                        </div>
-                        <h3 class="mb-4">Contact Number</h3>
-                        <p><a href="tel://+919876543210">+91 70564 40985</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-paper-plane"></span>
-                        </div>
-                        <h3 class="mb-4">Email Address</h3>
-                        <p><a href="mailto:manjeetsingh.codes@gmail.com">manjeetsingh.codes@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-                    <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="icon-globe"></span>
-                        </div>
-                        <h3 class="mb-4">Download Resume</h3>
-                        <p><a href="#">resumelink</a></p>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <br><br>
-                    <div class="row justify-content-center">
-                        <div class="col-md-7 ftco-animate text-center">
-                            <h2>Have a<span> Question? </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77"
-                                    class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-                        </div>
-                    </div>
-                    <br>
-                    <ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-                        <li class="ftco-animate normal-txt">Find me on </li>
-                        <li class="ftco-animate"><a href="https://github.com/ManjeetAulakh"><span
-                                    class="icon-github"></span></a></li>
-                        <li class="ftco-animate"><a href="https://www.linkedin.com/in/manjeetsingh0/"><span
-                                    class="icon-linkedin"></span></a></li>
-                        <li class="ftco-animate"><a href="https://www.instagram.com/manjeet.codes"><span
-                                    class="icon-instagram"></span></a></li>
-                    </ul>
-                    <br>
+            <div class="contact-cta reveal">
+                <h3>Let's build something <span class="gradient-text">extraordinary</span> together.</h3>
+                <div class="social-links">
+                    <a href="https://github.com/ManjeetAulakh" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/manjeetsingh0/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/manjeet.codes" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="mailto:manjeetsingh.codes@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="ftco-footer ftco-section">
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p>
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template
-                        is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a
-                            href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </p>
-                </div>
-            </div>
+            <p>
+                &copy;
+                <script>document.write(new Date().getFullYear());</script> Manjeet Singh ·
+                Developer <i class="fas fa-code" style="color: var(--accent);"></i> ·
+                Creator <i class="fab fa-youtube" style="color: #ff0000;"></i> ·
+                Explorer <i class="fas fa-rocket" style="color: var(--cyan);"></i>
+            </p>
         </div>
     </footer>
 
-    <!-- Loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-                stroke="#F96D00" />
-        </svg></div>
-
     <!-- Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
-    <script src="js/main.js"></script>
-
-    <!-- Skills Filtering Script -->
-    <script>
-        (function manageSkillFiltering_MJS() {
-            const categoryButtons = document.querySelectorAll('.skill-category');
-            const cards = document.querySelectorAll('.skill-card');
-
-            // Skill categories mapping
-            const categoryMap = {
-                'backend': ['Java', 'Spring Boot', 'Spring Security', 'Hibernate'],
-                'frontend': ['React.js', 'JavaScript', 'HTML5', 'CSS3'],
-                'devops': ['Docker', 'AWS', 'CI/CD'],
-                'database': ['SQL', 'System Design'],
-                'tools': ['Git', 'Linux']
-            };
-
-            function applyFilter(filter) {
-                cards.forEach(card => {
-                    const skillName = card.querySelector('.skill-name').textContent;
-
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        const skillsInCategory = categoryMap[filter] || [];
-                        if (skillsInCategory.includes(skillName)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            }
-
-            categoryButtons.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    // Remove active class from all buttons
-                    categoryButtons.forEach(b => b.classList.remove('active'));
-
-                    // Add active class to clicked button
-                    this.classList.add('active');
-
-                    // Get filter value
-                    const filter = this.getAttribute('data-filter');
-
-                    // Apply filter
-                    applyFilter(filter);
-                });
-            });
-
-            // Initialize with 'all' filter
-            applyFilter('all');
-        })();
-    </script>
+    <script src="js/app.js"></script>
 
 </body>
 
