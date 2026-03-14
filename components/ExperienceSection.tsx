@@ -72,7 +72,7 @@ function TimelineItem({ exp, index }: { exp: any; index: number }) {
             {/* Content Card container - desktop alternates sides, mobile always right */}
             <div className={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:mr-auto" : "md:pl-12 md:ml-auto"}`}>
                 <motion.div
-                    initial={{ opacity: 0, x: index % 2 === 0 && window.innerWidth >= 768 ? -40 : 40 }}
+                    initial={{ opacity: 0, x: index % 2 === 0 && typeof window !== "undefined" && window.innerWidth >= 768 ? -40 : 40 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
                     className="glass rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl hover:border-emerald-500/20 transition-colors group relative"
